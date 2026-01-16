@@ -24,27 +24,6 @@
         border-top: 8px solid #00796b;
     }
 
-    /* DOWNLOAD BUTTON */
-    .download-btn {
-        text-align: right;
-        margin-bottom: 20px;
-    }
-
-    .download-btn button {
-        background: #00796b;
-        color: #fff;
-        border: none;
-        padding: 10px 18px;
-        font-size: 14px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-
-    .download-btn button:hover {
-        background: #004d40;
-    }
-
     /* HEADER */
     .header {
         display: flex;
@@ -67,6 +46,7 @@
         font-size: 28px;
         color: #004d40;
         letter-spacing: 1px;
+        white-space: nowrap;       /* FORCE ONE LINE */
     }
 
     .contact {
@@ -129,15 +109,37 @@
         margin-bottom: 15px;
     }
 
-    /* MOBILE */
+    /* DOWNLOAD BUTTON */
+    .download-btn {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .download-btn button {
+        background: #00796b;
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 15px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .download-btn button:hover {
+        background: #004d40;
+    }
+
+    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
         .header {
             flex-direction: column;
             text-align: center;
         }
 
-        .download-btn {
-            text-align: center;
+        .header-text h1 {
+            font-size: 24px;
+            white-space: normal;   /* allow wrap on very small screens */
         }
 
         .two-column {
@@ -149,7 +151,7 @@
         }
     }
 
-    /* PRINT CLEAN (PDF) */
+    /* PRINT CLEAN */
     @media print {
         .download-btn {
             display: none;
@@ -170,11 +172,6 @@
 
 <div class="container">
 
-    <!-- DOWNLOAD BUTTON -->
-    <div class="download-btn">
-        <button onclick="window.print()">⬇ Download Resume (PDF)</button>
-    </div>
-
     <!-- HEADER -->
     <div class="header">
         <img src="profile.jpg" alt="Snooky Delos Reyes" class="profile-img">
@@ -192,8 +189,7 @@
         Highly organized and dependable professional with strong experience in administrative support,
         front desk operations, customer service, and hospitality, including experience in a dive shop
         environment. Skilled in office documentation, guest coordination, scheduling, cashiering, and
-        daily operational support. Thrives in fast-paced resort settings while delivering warm,
-        professional service.
+        daily operational support.
     </p>
 
     <h2>Relevant Professional Experience</h2>
@@ -217,7 +213,7 @@
         <li>Assisted guests with check-ins, check-outs, and reservations.</li>
         <li>Handled payments, billing, and guest records accurately.</li>
         <li>Coordinated with housekeeping and maintenance teams.</li>
-        <li>Resolved guest concerns to maintain high satisfaction.</li>
+        <li>Resolved guest concerns professionally.</li>
     </ul>
 
     <h3>Waitress / Dive Shop Staff</h3>
@@ -228,7 +224,6 @@
         <li>Coordinated guest needs related to diving schedules and activities.</li>
         <li>Managed cash and POS transactions responsibly.</li>
         <li>Promoted dive packages and resort services.</li>
-        <li>Maintained cleanliness of dining and common areas.</li>
     </ul>
 
     <h2>Education</h2>
@@ -249,13 +244,11 @@
             <li>Cashiering and billing</li>
             <li>Scheduling and coordination</li>
             <li>Front desk operations</li>
-            <li>Guest relations</li>
         </ul>
         <ul>
             <li>Microsoft Excel & Office</li>
             <li>Email & correspondence</li>
             <li>Internet navigation</li>
-            <li>Basic website creation</li>
             <li>Data entry & editing</li>
         </ul>
     </div>
@@ -267,24 +260,9 @@
         <p><strong>Ma. Kay Datinguinoo</strong><br>Employer – Arkbayz Suites<br>📞 0975 821 5029</p>
     </div>
 
-</div>
-
-</body>
-</html>        </ul>
-        <ul>
-            <li>Microsoft Excel & Office</li>
-            <li>Email & correspondence</li>
-            <li>Internet navigation</li>
-            <li>Basic website creation</li>
-            <li>Data entry & editing</li>
-        </ul>
-    </div>
-
-    <h2>Character References</h2>
-    <div class="references">
-        <p><strong>Adolfo Damiray</strong><br>Barangay Captain<br>📞 0965 430 9875</p>
-        <p><strong>Chrislyn V. Bugtong</strong><br>Cashier – Petra Petroleum<br>📞 0930 607 5463</p>
-        <p><strong>Ma. Kay Datinguinoo</strong><br>Employer – Arkbayz Suites<br>📞 0975 821 5029</p>
+    <!-- DOWNLOAD BUTTON BELOW -->
+    <div class="download-btn">
+        <button onclick="window.print()">⬇ Download Resume (PDF)</button>
     </div>
 
 </div>
