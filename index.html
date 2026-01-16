@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snooky Delos Reyes | Dive Resort Secretary</title>
 
+<!-- html2pdf.js library for PDF download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <style>
     body {
         font-family: "Segoe UI", Arial, sans-serif;
@@ -46,7 +49,7 @@
         font-size: 28px;
         color: #004d40;
         letter-spacing: 1px;
-        white-space: nowrap;       /* FORCE ONE LINE */
+        white-space: nowrap;
     }
 
     .contact {
@@ -139,7 +142,7 @@
 
         .header-text h1 {
             font-size: 24px;
-            white-space: normal;   /* allow wrap on very small screens */
+            white-space: normal;
         }
 
         .two-column {
@@ -260,12 +263,36 @@
         <p><strong>Ma. Kay Datinguinoo</strong><br>Employer – Arkbayz Suites<br>📞 0975 821 5029</p>
     </div>
 
-    <!-- DOWNLOAD BUTTON BELOW -->
+    <!-- DOWNLOAD BUTTON -->
     <div class="download-btn">
-        <button onclick="window.print()">⬇ Download Resume (PDF)</button>
+        <button id="downloadBtn">⬇ Download Resume (PDF)</button>
     </div>
 
 </div>
+
+<script>
+document.getElementById("downloadBtn").addEventListener("click", function() {
+    const element = document.querySelector(".container");
+
+    // Measure container height and adjust scale
+    const elementHeight = element.scrollHeight;
+    const pageHeight = 1122; // approximate px for A4 at 96dpi
+    let scale = 1;
+    if(elementHeight > pageHeight) {
+        scale = pageHeight / elementHeight; // scale down to fit page
+    }
+
+    const opt = {
+        margin:       0.3, // inches
+        filename:     'Snooky_Delos_Reyes_Resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 * scale, scrollY: 0 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+});
+</script>
 
 </body>
 </html>
