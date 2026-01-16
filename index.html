@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snooky D. Delos Reyes Resume</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -134,7 +135,7 @@
 
     <!-- HEADER -->
     <div class="header">
-        <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
+        <img src="YOUR_IMAGE_URL_HERE" alt="Snooky D. Delos Reyes">
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
@@ -233,16 +234,15 @@
 
 <script>
 function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({unit: 'pt', format: 'a4'});
-    doc.html(document.getElementById('resume'), {
-        callback: function (doc) {
-            doc.save('Snooky_Delos_Reyes_Resume.pdf');
-        },
-        x: 20,
-        y: 20,
-        width: 555,
-        windowWidth: 780
+    const resume = document.getElementById('resume');
+    html2canvas(resume, {scale: 2}).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'pt', 'a4');
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('Snooky_Delos_Reyes_Resume.pdf');
     });
 }
 </script>
