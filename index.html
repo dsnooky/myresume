@@ -20,12 +20,31 @@
         border-radius: 12px;
         box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
-    h1, h2, h3 {
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .header img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .header-info {
+        flex: 1;
+    }
+    .header-info h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    .header-info p {
+        margin: 2px 0;
+        font-size: 14px;
+    }
+    h2, h3 {
         margin: 5px 0;
         color: #03363d;
-    }
-    h1 {
-        font-size: 24px;
     }
     h2 {
         font-size: 18px;
@@ -40,9 +59,6 @@
     }
     .section {
         margin-top: 15px;
-    }
-    .contact {
-        margin-bottom: 15px;
     }
     button {
         background: #03363d;
@@ -61,10 +77,14 @@
 </head>
 <body>
 <div class="resume-container" id="resume">
-    <h1>SNOOKY D. DELOS REYES</h1>
-    <div class="contact">
-        <p>Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-        <p>📞 090831316t5 | ✉️ workwithsnooky@gmail.com</p>
+    <!-- HEADER WITH IMAGE -->
+    <div class="header">
+        <img src="YOUR_IMAGE_URL_HERE" alt="Snooky D. Delos Reyes">
+        <div class="header-info">
+            <h1>SNOOKY D. DELOS REYES</h1>
+            <p>Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
+            <p>📞 090831316t5 | ✉️ workwithsnooky@gmail.com</p>
+        </div>
     </div>
 
     <div class="section">
@@ -157,7 +177,7 @@ function downloadPDF() {
         },
         x: 20,
         y: 20,
-        width: 555, // max width of content on A4
+        width: 555,
         windowWidth: 800
     });
 }
