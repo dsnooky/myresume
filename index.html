@@ -15,72 +15,104 @@
     }
 
     .resume-container {
-        max-width: 780px;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 800px;
         margin: auto;
         background: #fff;
-        padding: 25px;
         border-radius: 10px;
         box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
     }
 
-    /* Header */
-    .header {
+    /* Sidebar */
+    .sidebar {
+        flex: 1;
+        min-width: 220px;
+        background: #f0f7f7;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #03363d;
+        border-bottom: 2px solid #03363d;
+        padding-bottom: 3px;
+    }
+    .sidebar p, .sidebar li {
+        font-size: 13px;
+        margin: 3px 0;
+    }
+    .sidebar ul {
+        padding-left: 15px;
+        margin: 3px 0;
+    }
+    .sidebar li::before {
+        content: "✓";
+        margin-right: 6px;
+        color: #05575a;
+    }
+
+    /* Main content */
+    .main {
+        flex: 2;
+        min-width: 300px;
+        padding: 25px 20px;
+        box-sizing: border-box;
+    }
+    .main-header {
         display: flex;
         align-items: center;
         gap: 15px;
         flex-wrap: wrap;
+        margin-bottom: 15px;
     }
-    .header img {
+    .main-header img {
         width: 90px;
         height: 90px;
         border-radius: 50%;
         object-fit: cover;
-        flex-shrink: 0;
     }
-    .header-info {
-        flex: 1;
-        min-width: 200px;
-    }
-    .header-info h1 {
+    .main-header h1 {
         margin: 0;
         font-size: 24px;
     }
-    .header-info p {
+    .main-header p {
         margin: 2px 0;
         font-size: 13px;
     }
 
-    /* Section Styles */
     .section {
         margin-top: 15px;
     }
-    h2 {
+    .section h2 {
         font-size: 17px;
         margin-bottom: 5px;
         color: #03363d;
         border-bottom: 2px solid #03363d;
         padding-bottom: 3px;
     }
-    h3 {
+    .section h3 {
         font-size: 15px;
         margin: 6px 0 3px 0;
         color: #05575a;
     }
-    p, li {
+    .section p, .section li {
         font-size: 13px;
         line-height: 1.4;
     }
-    ul {
+    .section ul {
         padding-left: 20px;
         margin: 4px 0;
     }
-    li::before {
+    .section li::before {
         content: "✓";
         margin-right: 6px;
         color: #05575a;
     }
 
-    /* Download Button */
     button {
         background: #03363d;
         color: white;
@@ -96,29 +128,32 @@
     }
 
     /* Responsive */
-    @media (max-width: 600px) {
-        .header {
+    @media (max-width: 700px) {
+        .resume-container {
             flex-direction: column;
-            align-items: center;
-            text-align: center;
         }
-        .header-info h1 {
+        .sidebar, .main {
+            min-width: 100%;
+        }
+        .main-header h1 {
             font-size: 20px;
         }
-        .header-info p {
+        .main-header p {
             font-size: 12px;
         }
-        .header img {
-            width: 80px;
-            height: 80px;
-        }
-        h2 {
+        .section h2 {
             font-size: 16px;
         }
-        h3 {
+        .section h3 {
             font-size: 14px;
         }
-        p, li {
+        .section p, .section li {
+            font-size: 12px;
+        }
+        .sidebar h2 {
+            font-size: 15px;
+        }
+        .sidebar p, .sidebar li {
             font-size: 12px;
         }
         button {
@@ -132,103 +167,93 @@
 
 <div class="resume-container" id="resume">
 
-    <!-- HEADER -->
-    <div class="header">
-        <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
-        <div class="header-info">
-            <h1>SNOOKY D. DELOS REYES</h1>
-            <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 090831316t5 | ✉️ workwithsnooky@gmail.com</p>
-        </div>
-    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>ℹ️ Personal Info</h2>
+        <p>🎂 Age: 36 | DOB: Jan 29, 1989</p>
+        <p>❤️ Married | 5’1” | 64 kg</p>
+        <p>Languages: Filipino, English</p>
 
-    <!-- PROFESSIONAL SUMMARY -->
-    <div class="section">
-        <h2>👤 PROFESSIONAL SUMMARY</h2>
-        <p>Dedicated and dependable professional with extensive experience in administrative operations, cashiering, customer service, and hospitality. Proven ability to manage daily branch operations, maintain accurate records, and support management in implementing company policies. Highly organized, detail-oriented, and capable of working efficiently under minimal supervision while delivering excellent service.</p>
-    </div>
+        <h2>🛠️ Skills</h2>
+        <p>💻 Technical: Microsoft Excel, Office Apps, Internet Navigation, Basic Website, Docs Editing</p>
+        <p>✅ Soft: Patient, Fast learner, Multitasking, Minimal supervision</p>
 
-    <!-- PROFESSIONAL EXPERIENCE -->
-    <div class="section">
-        <h2>💼 PROFESSIONAL EXPERIENCE</h2>
-
-        <h3>Administrative Assistant</h3>
-        <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em><br>National Road, Payompon, Mamburao, Occidental Mindoro</p>
+        <h2>📇 References</h2>
         <ul>
-            <li>Managed daily administrative and operational activities of the gas station branch.</li>
-            <li>Performed cashiering duties, including accurate handling of cash transactions and sales reconciliation.</li>
-            <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
-            <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
-            <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
-            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
-            <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
-            <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
-            <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
-            <li>Addressed customer inquiries and ensured compliance with safety, cleanliness, and service standards.</li>
+            <li>Adolfo Damiray – Barangay Captain | 📞 0965 430 9875</li>
+            <li>Chrislyn V. Bugtong – Cashier | 📞 0930 607 5463</li>
+            <li>Ma Kay Datinguinoo – Employer | 📞 0975 821 5029</li>
         </ul>
 
-        <h3>Hotel Receptionist</h3>
-        <p><em>Arkbayz Suites | 2016 – 2019</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
-        <ul>
-            <li>Welcomed guests and assisted with check-ins, check-outs, and general inquiries.</li>
-            <li>Managed room reservations, guest records, and payment transactions accurately.</li>
-            <li>Coordinated with housekeeping and maintenance teams to ensure room readiness and guest satisfaction.</li>
-            <li>Handled guest concerns professionally and resolved issues in a timely manner.</li>
-            <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
-        </ul>
-
-        <h3>Waitress</h3>
-        <p><em>Nova Dive Shop | 2008 – 2009</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
-        <ul>
-            <li>Provided courteous and efficient food and beverage service in a coastal hospitality setting.</li>
-            <li>Took customer orders accurately and ensured timely and quality service delivery.</li>
-            <li>Managed cash and point-of-sale transactions with integrity and attention to detail.</li>
-            <li>Maintained cleanliness and organization of dining, bar, and common areas in compliance with health and safety standards.</li>
-            <li>Assisted guests with dining needs, reservations, and dive-related activities.</li>
-            <li>Promoted dive packages, merchandise, and additional services to enhance customer experience.</li>
-            <li>Delivered professional hospitality aligned with company service standards.</li>
-        </ul>
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="section">
-        <h2>🎓 EDUCATION</h2>
-        <p>📚 <strong>Bachelor of Science in Information Technology</strong><br>OMNC – Mamburao Campus | Undergraduate | 2021 – 2022</p>
-        <p>📚 <strong>Associate’s Degree in Hotel and Restaurant Management</strong><br>St. Clare College of Caloocan | Graduate | 2008</p>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section">
-        <h2>🛠️ SKILLS</h2>
-        <p>💻 <strong>Technical Skills:</strong> Microsoft Excel, Microsoft Office Applications, Internet Navigation, Basic Website Creation, Document Editing</p>
-        <p>✅ <strong>Soft Skills:</strong> Patient and dependable, Fast learner, Strong multitasking abilities, Able to work under minimal supervision</p>
-    </div>
-
-    <!-- PERSONAL INFO -->
-    <div class="section">
-        <h2>ℹ️ PERSONAL INFORMATION</h2>
-        <p>🎂 Age: 36 years old | Date of Birth: January 29, 1989 | Birthplace: Abra de Ilog, Occidental Mindoro</p>
-        <p>❤️ Civil Status: Married | Height: 5’1” | Weight: 64 kg | Languages: Filipino, English</p>
-    </div>
-
-    <!-- REFERENCES -->
-    <div class="section">
-        <h2>📇 CHARACTER REFERENCES</h2>
-        <ul>
-            <li>Adolfo Damiray – Barangay Captain, Armado, Abra de Ilog, Occidental Mindoro | 📞 0965 430 9875</li>
-            <li>Chrislyn V. Bugtong – Cashier, Petra Petroleum Service and Distribution | 📞 0930 607 5463</li>
-            <li>Ma Kay Datinguinoo – Employer, Arkbayz Suites | 📞 0975 821 5029</li>
-        </ul>
-    </div>
-
-    <!-- HOBBIES -->
-    <div class="section">
-        <h2>❤️ HOBBIES & INTERESTS</h2>
+        <h2>❤️ Hobbies</h2>
         <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
-    <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
+    <!-- Main content -->
+    <div class="main">
+        <div class="main-header">
+            <img src="YOUR_IMAGE_URL_HERE" alt="Snooky D. Delos Reyes">
+            <div>
+                <h1>SNOOKY D. DELOS REYES</h1>
+                <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
+                <p>📞 090831316t5 | ✉️ workwithsnooky@gmail.com</p>
+            </div>
+        </div>
 
+        <div class="section">
+            <h2>👤 Professional Summary</h2>
+            <p>Dedicated and dependable professional with extensive experience in administrative operations, cashiering, customer service, and hospitality. Proven ability to manage daily branch operations, maintain accurate records, and support management in implementing company policies. Highly organized, detail-oriented, and capable of working efficiently under minimal supervision while delivering excellent service.</p>
+        </div>
+
+        <div class="section">
+            <h2>💼 Professional Experience</h2>
+
+            <h3>Administrative Assistant</h3>
+            <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em></p>
+            <ul>
+                <li>Managed daily administrative and operational activities of the gas station branch.</li>
+                <li>Performed cashiering duties and sales reconciliation.</li>
+                <li>Prepared records, reports, and inventory documentation.</li>
+                <li>Monitored fuel deliveries, stock levels, and supplies.</li>
+                <li>Handled petty cash and financial documentation.</li>
+                <li>Assisted the Branch Manager in enforcing policies.</li>
+                <li>Coordinated staff schedules and attendance monitoring.</li>
+                <li>Communicated with suppliers, contractors, and head office.</li>
+                <li>Processed invoices, purchase orders, and documents.</li>
+                <li>Addressed customer inquiries and maintained standards.</li>
+            </ul>
+
+            <h3>Hotel Receptionist</h3>
+            <p><em>Arkbayz Suites | 2016 – 2019</em></p>
+            <ul>
+                <li>Welcomed guests, check-ins, check-outs, inquiries.</li>
+                <li>Managed room reservations, guest records, payments.</li>
+                <li>Coordinated with housekeeping and maintenance teams.</li>
+                <li>Handled guest concerns professionally and timely.</li>
+                <li>Maintained organized front desk and hotel operations.</li>
+            </ul>
+
+            <h3>Waitress</h3>
+            <p><em>Nova Dive Shop | 2008 – 2009</em></p>
+            <ul>
+                <li>Provided courteous food and beverage service.</li>
+                <li>Took customer orders accurately and timely.</li>
+                <li>Managed cash and point-of-sale transactions.</li>
+                <li>Maintained cleanliness of dining, bar, and common areas.</li>
+                <li>Assisted guests with dining and dive activities.</li>
+                <li>Promoted dive packages and merchandise.</li>
+                <li>Delivered professional hospitality aligned with standards.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎓 Education</h2>
+            <p>📚 Bachelor of Science in Information Technology | OMNC – Mamburao Campus | 2021 – 2022</p>
+            <p>📚 Associate’s Degree in Hotel and Restaurant Management | St. Clare College of Caloocan | 2008</p>
+        </div>
+
+        <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
+    </div>
 </div>
 
 <script>
@@ -239,10 +264,10 @@ function downloadPDF() {
         callback: function (doc) {
             doc.save('Snooky_Delos_Reyes_Resume.pdf');
         },
-        x: 20,
-        y: 20,
-        width: 555,
-        windowWidth: 780
+        x: 15,
+        y: 15,
+        width: 570,
+        windowWidth: 800
     });
 }
 </script>
