@@ -7,53 +7,78 @@
 
 <style>
     body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: #f2f6f8;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
         margin: 0;
         padding: 0;
-        color: #333;
+        color: #03363d;
     }
 
     .container {
-        max-width: 900px;
+        max-width: 950px;
         background: #ffffff;
         margin: 40px auto;
         padding: 40px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        border-top: 8px solid #00796b;
     }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 5px;
+    /* HEADER WITH PHOTO */
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #26a69a;
+        flex-shrink: 0;
+    }
+
+    .header-text h1 {
+        margin: 0;
+        font-size: 28px;
+        color: #004d40;
         letter-spacing: 1px;
     }
 
     .contact {
-        text-align: center;
         font-size: 14px;
-        margin-bottom: 30px;
+        color: #006064;
+        margin-top: 6px;
+        line-height: 1.6;
     }
 
     h2 {
-        margin-top: 30px;
-        border-bottom: 2px solid #1b6f7a;
+        margin-top: 35px;
         padding-bottom: 6px;
-        color: #1b6f7a;
+        border-bottom: 3px solid #26a69a;
+        color: #00695c;
+        text-transform: uppercase;
+        font-size: 18px;
+        letter-spacing: 1px;
     }
 
     h3 {
-        margin-bottom: 3px;
-        margin-top: 20px;
+        margin-top: 22px;
+        margin-bottom: 4px;
+        color: #004d40;
     }
 
     p {
-        line-height: 1.6;
+        line-height: 1.7;
         margin: 6px 0;
     }
 
     ul {
         margin-top: 10px;
-        padding-left: 20px;
+        padding-left: 22px;
     }
 
     li {
@@ -63,17 +88,42 @@
     .two-column {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 25px;
+    }
+
+    .badge {
+        display: inline-block;
+        background: #b2dfdb;
+        color: #004d40;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        margin-bottom: 10px;
     }
 
     .references p {
+        background: #e0f2f1;
+        padding: 12px;
+        border-radius: 10px;
         margin-bottom: 15px;
     }
 
+    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+        }
+
         .two-column {
             grid-template-columns: 1fr;
         }
+
         .container {
             padding: 25px;
         }
@@ -85,57 +135,63 @@
 
 <div class="container">
 
-    <h1>SNOOKY D. DELOS REYES</h1>
-    <div class="contact">
-        Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108<br>
-        📞 0908 313 1655 | ✉️ workwithsnooky@gmail.com
+    <!-- HEADER -->
+    <div class="header">
+        <img src="profile.jpg" alt="Snooky Delos Reyes" class="profile-img">
+        <div class="header-text">
+            <h1>SNOOKY D. DELOS REYES</h1>
+            <div class="contact">
+                🌴 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108<br>
+                📞 0963 780 4777 | ✉️ workwithsnooky@gmail.com
+            </div>
+        </div>
     </div>
 
-    <h2>PROFESSIONAL SUMMARY</h2>
+    <h2>Professional Summary</h2>
     <p>
         Highly organized and dependable professional with strong experience in administrative support,
         front desk operations, customer service, and hospitality, including experience in a dive shop
         environment. Skilled in office documentation, guest coordination, scheduling, cashiering, and
-        daily operational support. Able to thrive in fast-paced resort settings while maintaining
-        professionalism, accuracy, and excellent guest relations.
+        daily operational support. Thrives in fast-paced resort settings while delivering warm,
+        professional service.
     </p>
 
-    <h2>RELEVANT PROFESSIONAL EXPERIENCE</h2>
+    <h2>Relevant Professional Experience</h2>
 
     <h3>Administrative Assistant</h3>
+    <span class="badge">Operations & Administration</span>
     <p><strong>Petra Petroleum Service and Distribution</strong> | 2020 – 2025</p>
     <ul>
-        <li>Managed daily administrative and office operations to ensure smooth branch workflow.</li>
-        <li>Performed cashiering duties, billing, daily sales reconciliation, and petty cash handling.</li>
-        <li>Prepared reports, maintained accurate records, and organized administrative documents.</li>
-        <li>Coordinated staff schedules, attendance records, and internal communications.</li>
-        <li>Processed invoices, purchase orders, and supplier-related documents.</li>
-        <li>Communicated with vendors, contractors, and head office regarding operational needs.</li>
-        <li>Ensured compliance with safety, cleanliness, and company standards.</li>
+        <li>Managed daily administrative and office operations.</li>
+        <li>Handled cashiering, billing, sales reconciliation, and petty cash.</li>
+        <li>Prepared reports, maintained records, and organized documents.</li>
+        <li>Coordinated staff schedules and internal communications.</li>
+        <li>Processed invoices and supplier documentation.</li>
+        <li>Ensured compliance with safety and cleanliness standards.</li>
     </ul>
 
     <h3>Hotel Receptionist</h3>
+    <span class="badge">Front Desk & Guest Services</span>
     <p><strong>Arkbayz Suites</strong> | 2016 – 2019</p>
     <ul>
-        <li>Assisted guests with check-ins, check-outs, reservations, and inquiries.</li>
-        <li>Managed guest records, payments, and billing transactions accurately.</li>
-        <li>Coordinated with housekeeping and maintenance teams to ensure room readiness.</li>
-        <li>Handled guest concerns professionally to ensure positive guest experiences.</li>
-        <li>Maintained an organized and presentable front desk area.</li>
+        <li>Assisted guests with check-ins, check-outs, and reservations.</li>
+        <li>Handled payments, billing, and guest records accurately.</li>
+        <li>Coordinated with housekeeping and maintenance teams.</li>
+        <li>Resolved guest concerns to maintain high satisfaction.</li>
     </ul>
 
     <h3>Waitress / Dive Shop Staff</h3>
+    <span class="badge">Dive Resort Environment</span>
     <p><strong>Nova Dive Shop</strong> | 2008 – 2009</p>
     <ul>
-        <li>Assisted guests in a dive resort environment with dining, reservations, and inquiries.</li>
-        <li>Coordinated guest needs related to diving schedules, meals, and activities.</li>
-        <li>Managed cash and POS transactions accurately and responsibly.</li>
-        <li>Maintained cleanliness and organization of dining and common areas.</li>
-        <li>Promoted dive packages, merchandise, and resort services.</li>
-        <li>Delivered professional and friendly service consistent with resort standards.</li>
+        <li>Assisted guests with dining, reservations, and inquiries.</li>
+        <li>Coordinated guest needs related to diving schedules and activities.</li>
+        <li>Managed cash and POS transactions responsibly.</li>
+        <li>Promoted dive packages and resort services.</li>
+        <li>Maintained cleanliness of dining and common areas.</li>
     </ul>
 
-    <h2>EDUCATION</h2>
+    <h2>Education</h2>
     <p><strong>Bachelor of Science in Information Technology</strong><br>
        OMNC – Mamburao Campus<br>
        Undergraduate | 2021 – 2022
@@ -146,60 +202,32 @@
        Graduate | 2008
     </p>
 
-    <h2>KEY SKILLS</h2>
+    <h2>Key Skills</h2>
     <div class="two-column">
-        <div>
-            <h4>Administrative & Office</h4>
-            <ul>
-                <li>Office administration & documentation</li>
-                <li>Cashiering and billing</li>
-                <li>Scheduling and coordination</li>
-                <li>Record keeping & filing</li>
-                <li>Email & correspondence</li>
-            </ul>
-        </div>
-        <div>
-            <h4>Hospitality & Technical</h4>
-            <ul>
-                <li>Front desk operations</li>
-                <li>Guest coordination & support</li>
-                <li>Reservation assistance</li>
-                <li>Microsoft Excel & Office</li>
-                <li>Internet navigation & data entry</li>
-            </ul>
-        </div>
+        <ul>
+            <li>Office administration & documentation</li>
+            <li>Cashiering and billing</li>
+            <li>Scheduling and coordination</li>
+            <li>Front desk operations</li>
+            <li>Guest relations</li>
+        </ul>
+        <ul>
+            <li>Microsoft Excel & Office</li>
+            <li>Email & correspondence</li>
+            <li>Internet navigation</li>
+            <li>Basic website creation</li>
+            <li>Data entry & editing</li>
+        </ul>
     </div>
 
-    <h2>PERSONAL INFORMATION</h2>
-    <p>Age: 36 years old</p>
-    <p>Date of Birth: January 29, 1989</p>
-    <p>Languages Spoken: Filipino, English</p>
-
-    <h2>CHARACTER REFERENCES</h2>
+    <h2>Character References</h2>
     <div class="references">
-        <p>
-            <strong>Adolfo Damiray</strong><br>
-            Barangay Captain<br>
-            Armado, Abra de Ilog, Occidental Mindoro<br>
-            📞 0965 430 9875
-        </p>
-
-        <p>
-            <strong>Chrislyn V. Bugtong</strong><br>
-            Cashier<br>
-            Petra Petroleum Service and Distribution<br>
-            📞 0930 607 5463
-        </p>
-
-        <p>
-            <strong>Ma. Kay Datinguinoo</strong><br>
-            Employer<br>
-            Arkbayz Suites<br>
-            📞 0975 821 5029
-        </p>
+        <p><strong>Adolfo Damiray</strong><br>Barangay Captain<br>📞 0965 430 9875</p>
+        <p><strong>Chrislyn V. Bugtong</strong><br>Cashier – Petra Petroleum<br>📞 0930 607 5463</p>
+        <p><strong>Ma. Kay Datinguinoo</strong><br>Employer – Arkbayz Suites<br>📞 0975 821 5029</p>
     </div>
 
 </div>
 
 </body>
-  </html>
+</html>
