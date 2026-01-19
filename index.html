@@ -3,154 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snooky D. Delos Reyes Resume</title>
-
+<title>Snooky D. Delos Reyes - Resume</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
-    background: #f9f9f9;
-    color: #03363d;
-}
-.resume-container {
-    max-width: 780px;
-    margin: auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    word-wrap: break-word;
-    margin-bottom: 20px;
-}
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
 
-/* Header */
-.header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-.header img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-.header-info {
-    flex: 1;
-    min-width: 200px;
-}
-.header-info h1 {
-    margin: 0;
-    font-size: 24px;
-}
-.header-info p {
-    margin: 2px 0;
-    font-size: 13px;
-}
+    .resume-container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background-color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-/* Sections */
-.section {
-    margin-top: 15px;
-}
-h2 {
-    font-size: 17px;
-    margin-bottom: 5px;
-    color: #03363d;
-    border-bottom: 2px solid #03363d;
-    padding-bottom: 3px;
-}
-h3 {
-    font-size: 15px;
-    margin: 6px 0 3px 0;
-    color: #05575a;
-}
-p, li {
-    font-size: 13px;
-    line-height: 1.4;
-}
-ul {
-    padding-left: 20px;
-    margin: 4px 0;
-}
-li::before {
-    content: "✓";
-    margin-right: 6px;
-    color: #05575a;
-}
+    /* Left Column */
+    .left-column {
+        background-color: #eaf1f5;
+        padding: 20px;
+        border-radius: 10px;
+    }
 
-/* Certification */
-.certification {
-    margin-top: 50px;
-    text-align: center;
-    font-style: italic;
-}
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .resume-container { padding: 15px; }
-    .section { margin-top: 12px; }
-    .header { flex-direction: column; align-items: center; text-align: center; }
-    .header-info h1 { font-size: 20px; word-break: break-word; }
-    .header-info p { font-size: 12px; }
-    .header img { width: 80px; height: 80px; }
-    h2 { font-size: 16px; }
-    h3 { font-size: 14px; }
-    p, li { font-size: 12px; line-height: 1.5; }
-    ul { padding-left: 18px; }
-    .certification { margin-top: 40px; font-size: 12px; }
-}
+    h2, h3, h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #03363d;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .section p, .section li {
+        margin: 5px 0;
+    }
+
+    .skills li {
+        margin-bottom: 8px;
+    }
+
+    /* Right Column */
+    .right-column {
+        padding: 20px;
+    }
+
+    .experience, .education {
+        margin-bottom: 20px;
+    }
+
+    .job-title {
+        font-weight: bold;
+        color: #03363d;
+    }
+
+    .company, .dates {
+        font-style: italic;
+        color: #555;
+        font-size: 0.9em;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    /* Footer */
+    .certification {
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 0.9em;
+    }
+
 </style>
 </head>
-
 <body>
 
 <div class="resume-container">
 
-    <div class="header">
-        <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
-        <div class="header-info">
-            <h1>SNOOKY D. DELOS REYES</h1>
+    <!-- Left Column -->
+    <div class="left-column">
+        <div class="section">
+            <h2>Snooky D. Delos Reyes</h2>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 0908-313-1655 | ✉️ workwithsnooky@gmail.com</p>
+            <p>📞 0908-313-1655</p>
+            <p>✉️ workwithsnooky@gmail.com</p>
+        </div>
+
+        <div class="section">
+            <h3>Personal Information</h3>
+            <p><strong>Date of Birth:</strong> [Insert DOB]</p>
+            <p><strong>Age:</strong> [Insert Age]</p>
+            <p><strong>Civil Status:</strong> [Insert Status]</p>
+            <p><strong>Nationality:</strong> Filipino</p>
+            <p><strong>Languages:</strong> English, Filipino</p>
+        </div>
+
+        <div class="section">
+            <h3>Hard Skills</h3>
+            <ul class="skills">
+                <li>POS Systems & Cashiering</li>
+                <li>Microsoft Office Suite</li>
+                <li>Inventory & Ordering Management</li>
+                <li>Reservation & Booking Management</li>
+                <li>Report Preparation & Documentation</li>
+                <li>Scheduling & Staff Coordination</li>
+                <li>Food Safety & Sanitation Compliance</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Soft Skills</h3>
+            <ul class="skills">
+                <li>Leadership & Team Management</li>
+                <li>Communication & Interpersonal Skills</li>
+                <li>Adaptability & Problem Solving</li>
+                <li>Customer Service Excellence</li>
+                <li>Time Management & Organizational Skills</li>
+                <li>Conflict Resolution & Decision Making</li>
+                <li>Responsibility & Work Ethics</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Character References</h3>
+            <p><strong>[Reference 1 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
+            <p><strong>[Reference 2 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>👤 PROFESSIONAL SUMMARY</h2>
-        <p>Dedicated and dependable professional with extensive experience in administrative operations, cashiering, customer service, and hospitality. Proven ability to manage daily branch operations, maintain accurate records, and support management in implementing company policies.</p>
-    </div>
+    <!-- Right Column -->
+    <div class="right-column">
+        <div class="section">
+            <h3>Professional Summary</h3>
+            <p>Dynamic and results-oriented professional with extensive experience in restaurant operations, hospitality management, and administrative leadership. Proven ability to oversee daily operations, lead and train staff, ensure exceptional customer service, and maintain operational efficiency. Skilled in inventory management, cash handling, scheduling, and problem-solving.</p>
+        </div>
 
-    <div class="section">
-        <h2>💼 PROFESSIONAL EXPERIENCE</h2>
+        <div class="section experience">
+            <h3>Professional Experience</h3>
 
-        <h3>Administrative Assistant</h3>
-        <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em></p>
-        <ul>
-            <li>Managed daily administrative and operational activities of the gas station branch.</li>
-            <li>Performed cashiering duties and sales reconciliation.</li>
-            <li>Prepared reports, inventory, and documentation.</li>
-        </ul>
+            <p class="job-title">Administrative Assistant / Secretary</p>
+            <p class="company">Petra Petroleum Service and Distribution – Mamburao Branch | Jan 2020 – Dec 2023</p>
+            <ul>
+                <li>Coordinated daily operations, ensuring smooth workflow and efficiency.</li>
+                <li>Scheduled, supervised, and supported staff to meet operational goals.</li>
+                <li>Maintained accurate records and reports for decision-making.</li>
+                <li>Handled customer inquiries professionally, ensuring high service standards.</li>
+            </ul>
 
-        <h3>Hotel Receptionist</h3>
-        <p><em>Arkbayz Suites | 2016 – 2019</em></p>
-        <ul>
-            <li>Handled guest check-ins, check-outs, and reservations.</li>
-            <li>Resolved guest concerns professionally.</li>
-        </ul>
+            <p class="job-title">Administrative Assistant / Acting Manager</p>
+            <p class="company">Petra Petroleum Service and Distribution – Santa Cruz Branch | Jan 2024 – Dec 2025</p>
+            <ul>
+                <li>Oversaw daily branch operations, ensuring adherence to company policies.</li>
+                <li>Acted as branch manager, supervising staff and coordinating tasks.</li>
+                <li>Managed schedules, delegated responsibilities, and monitored performance.</li>
+                <li>Handled customer inquiries, complaints, and transactions efficiently.</li>
+            </ul>
 
-        <h3>Waitress</h3>
-        <p><em>Nova Dive Shop | 2008 – 2009</em></p>
-        <ul>
-            <li>Provided efficient food and beverage service.</li>
-            <li>Handled POS and cash transactions.</li>
-        </ul>
-    </div>
+            <p class="job-title">Hotel Receptionist</p>
+            <p class="company">Ark Bayz Suites – Puerto Galera | Jan 2016 – Dec 2019</p>
+            <ul>
+                <li>Managed front desk operations, ensuring smooth check-in/check-out.</li>
+                <li>Provided excellent customer service and resolved guest concerns promptly.</li>
+            </ul>
+        </div>
 
-    <div class="section certification">
-        <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
+        <div class="section education">
+            <h3>Education</h3>
+            <p><strong>Bachelor of Science in Information Technology</strong> – Undergraduate (2022–2023)</p>
+            <p><strong>Associate in Hotel and Restaurant Management</strong> – Graduate (2006–2008)</p>
+        </div>
+
+        <div class="section certification">
+            <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
+            <p><strong>Snooky D. Delos Reyes</strong></p>
+        </div>
     </div>
 
 </div>
