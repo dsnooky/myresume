@@ -7,7 +7,7 @@
 
 <!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- html2canvas (required for doc.html()) -->
+<!-- html2canvas -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
@@ -79,6 +79,7 @@
         padding-left: 20px;
         margin: 4px 0;
     }
+    /* remove checkmark in PDF but keep for screen */
     li::before {
         content: "✓";
         margin-right: 6px;
@@ -165,7 +166,7 @@
             <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
             <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
             <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
-            <li>Assisted in enforcing company policies, procedures, and operational standards.</li>
+            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
             <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
             <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
             <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
@@ -240,16 +241,25 @@
 <script>
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({unit: 'pt', format: 'a4'});
+    const doc = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
+    const resume = document.getElementById("resume");
 
-    doc.html(document.getElementById('resume'), {
-        callback: function (doc) {
-            doc.save('Snooky_Delos_Reyes_Resume.pdf');
-        },
-        x: 20,
-        y: 20,
-        width: 555,
-        windowWidth: 780
+    // Temporarily remove pseudo-elements (checkmarks) for clean PDF
+    const listItems = resume.querySelectorAll("li");
+    listItems.forEach(li => li.style.listStyle = "none");
+
+    html2canvas(resume, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+
+        doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
+        doc.save("Snooky_Delos_Reyes_Resume.pdf");
+
+        // Restore checkmarks
+        listItems.forEach(li => li.style.listStyle = "");
     });
 }
 </script>
