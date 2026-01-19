@@ -7,135 +7,139 @@
 
 <!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- html2canvas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 10px;
-        background: #f9f9f9;
-        color: #03363d;
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    background: #f9f9f9;
+    color: #03363d;
+}
 
-    .resume-container {
-        max-width: 780px;
-        margin: auto;
-        background: #fff;
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    }
+.resume-container {
+    max-width: 780px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
 
-    /* Header */
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.header img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.header-info {
+    flex: 1;
+    min-width: 200px;
+}
+.header-info h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.header-info p {
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+/* Section Styles */
+.section {
+    margin-top: 15px;
+}
+h2 {
+    font-size: 17px;
+    margin-bottom: 5px;
+    color: #03363d;
+    border-bottom: 2px solid #03363d;
+    padding-bottom: 3px;
+}
+h3 {
+    font-size: 15px;
+    margin: 6px 0 3px 0;
+    color: #05575a;
+}
+p, li {
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+ul {
+    padding-left: 20px;
+    margin: 4px 0;
+}
+li::before {
+    content: "✓";
+    margin-right: 6px;
+    color: #05575a;
+}
+
+/* Certification */
+.certification {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Centered Download Button */
+.download-btn-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    background: #03363d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+button:hover {
+    background: #05575a;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
     .header {
-        display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    .header img {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        object-fit: cover;
-        flex-shrink: 0;
-    }
-    .header-info {
-        flex: 1;
-        min-width: 200px;
+        text-align: center;
     }
     .header-info h1 {
-        margin: 0;
-        font-size: 24px;
+        font-size: 20px;
     }
     .header-info p {
-        margin: 2px 0;
-        font-size: 13px;
+        font-size: 12px;
     }
-
-    /* Section Styles */
-    .section {
-        margin-top: 15px;
+    .header img {
+        width: 80px;
+        height: 80px;
     }
     h2 {
-        font-size: 17px;
-        margin-bottom: 5px;
-        color: #03363d;
-        border-bottom: 2px solid #03363d;
-        padding-bottom: 3px;
+        font-size: 16px;
     }
     h3 {
-        font-size: 15px;
-        margin: 6px 0 3px 0;
-        color: #05575a;
+        font-size: 14px;
     }
     p, li {
-        font-size: 13px;
-        line-height: 1.4;
-        word-break: break-word;
+        font-size: 12px;
     }
-    ul {
-        padding-left: 20px;
-        margin: 4px 0;
-    }
-    li::before {
-        content: "✓";
-        margin-right: 6px;
-        color: #05575a;
-    }
-
-    /* Centered Download Button */
-    .download-btn-container {
-        text-align: center;
-        margin: 20px 0;
-    }
-
     button {
-        background: #03363d;
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 13px;
+        font-size: 12px;
+        padding: 8px 16px;
     }
-    button:hover {
-        background: #05575a;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-        .header {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .header-info h1 {
-            font-size: 20px;
-        }
-        .header-info p {
-            font-size: 12px;
-        }
-        .header img {
-            width: 80px;
-            height: 80px;
-        }
-        h2 {
-            font-size: 16px;
-        }
-        h3 {
-            font-size: 14px;
-        }
-        p, li {
-            font-size: 12px;
-        }
-        button {
-            font-size: 12px;
-            padding: 8px 16px;
-        }
-    }
+}
 </style>
 </head>
 <body>
@@ -237,6 +241,11 @@
         <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
+    <!-- CERTIFICATION -->
+    <div class="section certification">
+        <p>I hereby certify that the above informations are true and correct based on my knowledge and belief.</p>
+    </div>
+
 </div>
 
 <!-- Centered Download Button -->
@@ -245,47 +254,36 @@
 </div>
 
 <script>
-function downloadPDF() {
+async function downloadPDF() {
     const { jsPDF } = window.jspdf;
-    const resume = document.getElementById("resume");
     const doc = new jsPDF({ unit: "pt", format: "a4" });
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
+    const resume = document.getElementById("resume");
 
-    // Remove pseudo-elements for PDF
-    const listItems = resume.querySelectorAll("li");
-    listItems.forEach(li => li.style.listStyle = "none");
-
-    // Hide the download button
+    // Hide the download button for PDF
     document.querySelector(".download-btn-container").style.display = "none";
 
-    html2canvas(resume, { scale: 2 }).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
-        const imgProps = doc.getImageProperties(imgData);
-        const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+    // Force split into 2 pages
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const pageWidth = doc.internal.pageSize.getWidth();
 
-        // Handle multi-page PDF
-        let heightLeft = pdfHeight;
-        let position = 0;
-
-        doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
-        heightLeft -= pageHeight;
-
-        while (heightLeft > 0) {
-            position = heightLeft - pdfHeight;
-            doc.addPage();
-            doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
-            heightLeft -= pageHeight;
-        }
-
-        doc.save("Snooky_Delos_Reyes_Resume.pdf");
-
-        // Restore pseudo-elements and button
-        listItems.forEach(li => li.style.listStyle = "");
-        document.querySelector(".download-btn-container").style.display = "block";
+    await doc.html(resume, {
+        callback: function (doc) {
+            // Add a second blank page if needed to make it exactly 2 pages
+            if (doc.getNumberOfPages() === 1) {
+                doc.addPage();
+            }
+            doc.save("Snooky_Delos_Reyes_Resume.pdf");
+            // Restore button
+            document.querySelector(".download-btn-container").style.display = "block";
+        },
+        x: 20,
+        y: 20,
+        width: pageWidth - 40, // leave margins
+        windowWidth: resume.scrollWidth
     });
 }
 </script>
 
 </body>
 </html>
+
