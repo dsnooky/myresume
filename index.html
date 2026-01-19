@@ -74,19 +74,24 @@
     p, li {
         font-size: 13px;
         line-height: 1.4;
+        word-break: break-word;
     }
     ul {
         padding-left: 20px;
         margin: 4px 0;
     }
-    /* Remove checkmarks in PDF */
     li::before {
         content: "✓";
         margin-right: 6px;
         color: #05575a;
     }
 
-    /* Download Button */
+    /* Centered Download Button */
+    .download-btn-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
     button {
         background: #03363d;
         color: white;
@@ -95,7 +100,6 @@
         border-radius: 6px;
         cursor: pointer;
         font-size: 13px;
-        margin-top: 15px;
     }
     button:hover {
         background: #05575a;
@@ -235,31 +239,32 @@
 
 </div>
 
-<!-- Download Button -->
-<button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
+<!-- Centered Download Button -->
+<div class="download-btn-container">
+    <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
+</div>
 
 <script>
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const resume = document.getElementById("resume");
     const doc = new jsPDF({ unit: "pt", format: "a4" });
-    const pageHeight = doc.internal.pageSize.getHeight();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-    // Remove pseudo-elements (checkmarks) for PDF
+    // Remove pseudo-elements for PDF
     const listItems = resume.querySelectorAll("li");
     listItems.forEach(li => li.style.listStyle = "none");
 
-    // Hide the download button from PDF
-    const button = document.querySelector("button");
-    button.style.display = "none";
+    // Hide the download button
+    document.querySelector(".download-btn-container").style.display = "none";
 
     html2canvas(resume, { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL("image/png");
         const imgProps = doc.getImageProperties(imgData);
         const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-        // Add multiple pages if content is taller than A4
+        // Handle multi-page PDF
         let heightLeft = pdfHeight;
         let position = 0;
 
@@ -275,9 +280,9 @@ function downloadPDF() {
 
         doc.save("Snooky_Delos_Reyes_Resume.pdf");
 
-        // Restore checkmarks and button after PDF download
+        // Restore pseudo-elements and button
         listItems.forEach(li => li.style.listStyle = "");
-        button.style.display = "inline-block";
+        document.querySelector(".download-btn-container").style.display = "block";
     });
 }
 </script>
