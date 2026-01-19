@@ -157,12 +157,12 @@
             <p>
                 <strong>Bachelor of Science in Information Technology</strong><br>
                 School: [Insert University/College Name]<br>
-                Year Graduated: 2023
+                Underraduated: 2022-2023
             </p>
             <p>
                 <strong>Associate in Hotel and Restaurant Management</strong><br>
-                School: [Insert School Name]<br>
-                Year Graduated: 2008
+                School: St. Clare College of Caloocan<br>
+                Graduated: 2008
             </p>
         </div>
         <hr>
@@ -170,8 +170,8 @@
         <div class="section">
             <h3><i class="fas fa-cogs"></i> Hard Skills</h3>
             <ul class="skills">
-                <li>POS Systems & Cashiering</li>
-                <li>Microsoft Office Suite</li>
+                <li>Cashiering</li>
+                <li>Microsoft Office (Excel)</li>
                 <li>Inventory & Ordering Management</li>
                 <li>Reservation & Booking Management</li>
                 <li>Report Preparation & Documentation</li>
@@ -197,8 +197,9 @@
 
         <div class="section">
             <h3><i class="fas fa-user-check"></i> Character References</h3>
-            <p><strong>[Reference 1 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
-            <p><strong>[Reference 2 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
+            <p><strong>Ma. Kay Datinguinoo</strong> – [Manager / Ark Bayz Suites]<br>📞 [0975 821 5029] </p>
+            <p><strong>[Evony Lariouque]</strong> – [Cashier / Seaoil Philippines]<br>📞 [0952 627 8798] </p>
+            <p><strong>[Aiza Flor Moises]</strong> – [Cashier / Petra Petroleum Service and Distribution]<br>📞 [0966 783 4200] </p>
         </div>
     </div>
 
@@ -247,7 +248,7 @@
             <hr>
 
             <p class="job-title">Waitress</p>
-            <p class="company">Paradise Karaoke Bar – Puerto Galera, Oriental Mindoro | Mar 2014 – Sep 2014</p>
+            <p class="company">Hammerhead Karaoke Bar – Puerto Galera, Oriental Mindoro | Mar 2014 – Sep 2014</p>
             <ul>
                 <li>Provided attentive and friendly table service, ensuring customer satisfaction in a fast-paced environment.</li>
                 <li>Assisted in taking orders, serving food and beverages, and handling customer requests promptly.</li>
@@ -273,11 +274,59 @@
 
         <div class="section certification">
             <p><i class="fas fa-file-signature"></i> I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
-            <p><strong>Snooky D. Delos Reyes</strong></p>
+            <p style="text-align: right;"><strong>Snooky D. Delos Reyes</strong></p>
+
         </div>
     </div>
 
 </div>
+            <!-- Download Button -->
+<div style="text-align:center; margin: 20px;">
+    <button id="downloadBtn" style="
+        padding: 12px 20px;
+        font-size: 16px;
+        background-color: #03363d;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    ">
+        <i class="fas fa-download"></i> Download Resume (PDF)
+    </button>
+</div>
+
+<!-- jsPDF + html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+document.getElementById("downloadBtn").addEventListener("click", async () => {
+    const { jsPDF } = window.jspdf;
+
+    const resume = document.querySelector(".resume-container");
+    const button = document.getElementById("downloadBtn");
+
+    // Hide button during download
+    button.style.display = "none";
+
+    const canvas = await html2canvas(resume, {
+        scale: 2,
+        useCORS: true
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("Snooky_Delos_Reyes_Resume.pdf");
+
+    // Show button again
+    button.style.display = "block";
+});
+</script>
 
 </body>
 </html>
