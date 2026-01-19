@@ -7,151 +7,45 @@
 
 <!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- html2canvas (required for jsPDF.html) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
-    background: #f9f9f9;
-    color: #03363d;
-}
+body { font-family: Arial, sans-serif; margin:0; padding:10px; background:#f9f9f9; color:#03363d; }
+.resume-container { max-width:780px; margin:auto; background:#fff; padding:25px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.header { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
+.header img { width:90px; height:90px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+.header-info { flex:1; min-width:200px; }
+.header-info h1 { margin:0; font-size:24px; }
+.header-info p { margin:2px 0; font-size:13px; }
+.section { margin-top:15px; }
+h2 { font-size:17px; margin-bottom:5px; color:#03363d; border-bottom:2px solid #03363d; padding-bottom:3px; }
+h3 { font-size:15px; margin:6px 0 3px 0; color:#05575a; }
+p, li { font-size:13px; line-height:1.4; word-break:break-word; }
+ul { padding-left:20px; margin:4px 0; }
+li::before { content:"✓"; margin-right:6px; color:#05575a; }
+.certification { margin-top:40px; text-align:center; font-style:italic; }
 
-.resume-container {
-    max-width: 780px;
-    margin: auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
+/* Fixed Download Button */
+.download-btn-container { position:fixed; bottom:20px; width:100%; text-align:center; z-index:1000; }
+#downloadBtn { background-color:#03363d; color:white; border:none; padding:12px 22px; border-radius:8px; cursor:pointer; font-size:14px; transition:background-color 0.2s; }
+#downloadBtn:hover { background-color:#05575a; }
 
-/* Header */
-.header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-.header img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-.header-info {
-    flex: 1;
-    min-width: 200px;
-}
-.header-info h1 {
-    margin: 0;
-    font-size: 24px;
-}
-.header-info p {
-    margin: 2px 0;
-    font-size: 13px;
-}
-
-/* Section Styles */
-.section {
-    margin-top: 15px;
-}
-h2 {
-    font-size: 17px;
-    margin-bottom: 5px;
-    color: #03363d;
-    border-bottom: 2px solid #03363d;
-    padding-bottom: 3px;
-}
-h3 {
-    font-size: 15px;
-    margin: 6px 0 3px 0;
-    color: #05575a;
-}
-p, li {
-    font-size: 13px;
-    line-height: 1.4;
-    word-break: break-word;
-}
-ul {
-    padding-left: 20px;
-    margin: 4px 0;
-}
-li::before {
-    content: "✓";
-    margin-right: 6px;
-    color: #05575a;
-}
-
-/* Certification */
-.certification {
-    margin-top: 40px;
-    text-align: center;
-    font-style: italic;
-}
-
-/* Download Button */
-.download-btn-container {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
-}
-
-#downloadBtn {
-    background-color: #03363d;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-}
-
-#downloadBtn:hover {
-    background-color: #05575a;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .header-info h1 {
-        font-size: 20px;
-    }
-    .header-info p {
-        font-size: 12px;
-    }
-    .header img {
-        width: 80px;
-        height: 80px;
-    }
-    h2 {
-        font-size: 16px;
-    }
-    h3 {
-        font-size: 14px;
-    }
-    p, li {
-        font-size: 12px;
-    }
-    #downloadBtn {
-        font-size: 12px;
-        padding: 10px 18px;
-    }
+@media (max-width:600px) {
+    .header { flex-direction:column; align-items:center; text-align:center; }
+    .header-info h1 { font-size:20px; }
+    .header-info p { font-size:12px; }
+    .header img { width:80px; height:80px; }
+    h2 { font-size:16px; }
+    h3 { font-size:14px; }
+    p, li { font-size:12px; }
+    #downloadBtn { font-size:12px; padding:10px 18px; }
 }
 </style>
 </head>
 <body>
 
 <div class="resume-container" id="resume">
-
     <!-- HEADER -->
     <div class="header">
         <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
@@ -171,7 +65,6 @@ li::before {
     <!-- PROFESSIONAL EXPERIENCE -->
     <div class="section">
         <h2>💼 PROFESSIONAL EXPERIENCE</h2>
-
         <h3>Administrative Assistant</h3>
         <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em><br>National Road, Payompon, Mamburao, Occidental Mindoro</p>
         <ul>
@@ -180,78 +73,13 @@ li::before {
             <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
             <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
             <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
-            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
-            <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
-            <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
-            <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
-            <li>Addressed customer inquiries and ensured compliance with safety, cleanliness, and service standards.</li>
         </ul>
-
-        <h3>Hotel Receptionist</h3>
-        <p><em>Arkbayz Suites | 2016 – 2019</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
-        <ul>
-            <li>Welcomed guests and assisted with check-ins, check-outs, and general inquiries.</li>
-            <li>Managed room reservations, guest records, and payment transactions accurately.</li>
-            <li>Coordinated with housekeeping and maintenance teams to ensure room readiness and guest satisfaction.</li>
-            <li>Handled guest concerns professionally and resolved issues in a timely manner.</li>
-            <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
-        </ul>
-
-        <h3>Waitress</h3>
-        <p><em>Nova Dive Shop | 2008 – 2009</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
-        <ul>
-            <li>Provided courteous and efficient food and beverage service in a coastal hospitality setting.</li>
-            <li>Took customer orders accurately and ensured timely and quality service delivery.</li>
-            <li>Managed cash and point-of-sale transactions with integrity and attention to detail.</li>
-            <li>Maintained cleanliness and organization of dining, bar, and common areas in compliance with health and safety standards.</li>
-            <li>Assisted guests with dining needs, reservations, and dive-related activities.</li>
-            <li>Promoted dive packages, merchandise, and additional services to enhance customer experience.</li>
-            <li>Delivered professional hospitality aligned with company service standards.</li>
-        </ul>
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="section">
-        <h2>🎓 EDUCATION</h2>
-        <p>📚 <strong>Bachelor of Science in Information Technology</strong><br>OMNC – Mamburao Campus | Undergraduate | 2021 – 2022</p>
-        <p>📚 <strong>Associate’s Degree in Hotel and Restaurant Management</strong><br>St. Clare College of Caloocan | Graduate | 2008</p>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section">
-        <h2>🛠️ SKILLS</h2>
-        <p>💻 <strong>Technical Skills:</strong> Microsoft Excel, Microsoft Office Applications, Internet Navigation, Basic Website Creation, Document Editing</p>
-        <p>✅ <strong>Soft Skills:</strong> Patient and dependable, Fast learner, Strong multitasking abilities, Able to work under minimal supervision</p>
-    </div>
-
-    <!-- PERSONAL INFO -->
-    <div class="section">
-        <h2>ℹ️ PERSONAL INFORMATION</h2>
-        <p>🎂 Age: 36 years old | Date of Birth: January 29, 1989 | Birthplace: Abra de Ilog, Occidental Mindoro</p>
-        <p>❤️ Civil Status: Married | Height: 5’1” | Weight: 64 kg | Languages: Filipino, English</p>
-    </div>
-
-    <!-- REFERENCES -->
-    <div class="section">
-        <h2>📇 CHARACTER REFERENCES</h2>
-        <ul>
-            <li>Adolfo Damiray – Barangay Captain, Armado, Abra de Ilog, Occidental Mindoro | 📞 0965 430 9875</li>
-            <li>Chrislyn V. Bugtong – Cashier, Petra Petroleum Service and Distribution | 📞 0930 607 5463</li>
-            <li>Ma Kay Datinguinoo – Employer, Arkbayz Suites | 📞 0975 821 5029</li>
-        </ul>
-    </div>
-
-    <!-- HOBBIES -->
-    <div class="section">
-        <h2>❤️ HOBBIES & INTERESTS</h2>
-        <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
     <!-- CERTIFICATION -->
     <div class="section certification">
         <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
     </div>
-
 </div>
 
 <!-- Fixed Download Button -->
@@ -261,29 +89,27 @@ li::before {
 
 <script>
 window.onload = function() {
-    const downloadBtn = document.getElementById("downloadBtn");
-
-    downloadBtn.addEventListener("click", async function() {
+    const btn = document.getElementById("downloadBtn");
+    btn.addEventListener("click", async () => {
         const { jsPDF } = window.jspdf;
-        const resume = document.getElementById("resume");
         const doc = new jsPDF({ unit: "pt", format: "a4" });
+        const resume = document.getElementById("resume");
 
-        // Hide button for PDF
-        const buttonContainer = document.querySelector(".download-btn-container");
-        buttonContainer.style.display = "none";
-
-        const pageWidth = doc.internal.pageSize.getWidth();
+        // hide button during PDF generation
+        const btnContainer = document.querySelector(".download-btn-container");
+        btnContainer.style.display = "none";
 
         await doc.html(resume, {
-            x: 20,
-            y: 20,
-            width: pageWidth - 40,
-            windowWidth: resume.scrollWidth,
             callback: function(doc) {
+                // force 2 pages
                 if (doc.getNumberOfPages() === 1) doc.addPage();
                 doc.save("Snooky_Delos_Reyes_Resume.pdf");
-                buttonContainer.style.display = "block"; // restore button
-            }
+                btnContainer.style.display = "block"; // restore button
+            },
+            x: 20,
+            y: 20,
+            width: doc.internal.pageSize.getWidth() - 40,
+            windowWidth: resume.scrollWidth
         });
     });
 };
