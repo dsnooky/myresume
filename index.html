@@ -79,7 +79,6 @@
         padding-left: 20px;
         margin: 4px 0;
     }
-    /* remove checkmark in PDF but keep for screen */
     li::before {
         content: "✓";
         margin-right: 6px;
@@ -144,7 +143,7 @@
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 0908 313 1655 | ✉️ workwithsnooky@gmail.com</p>
+            <p>📞 0908-313-1655 | ✉️ workwithsnooky@gmail.com</p>
         </div>
     </div>
 
@@ -233,7 +232,6 @@
         <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
-    <!-- Download Button -->
     <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
 
 </div>
@@ -241,10 +239,10 @@
 <script>
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
     const resume = document.getElementById("resume");
 
-    // Temporarily remove pseudo-elements (checkmarks) for clean PDF
+    // Temporarily remove pseudo-elements (checkmarks)
     const listItems = resume.querySelectorAll("li");
     listItems.forEach(li => li.style.listStyle = "none");
 
@@ -254,11 +252,24 @@ function downloadPDF() {
         const pageHeight = doc.internal.pageSize.getHeight();
         const imgProps = doc.getImageProperties(imgData);
         const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+        let heightLeft = pdfHeight;
+        let position = 0;
 
-        doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
+        // Add first page
+        doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
+        heightLeft -= pageHeight;
+
+        // Add additional pages if content exceeds one page
+        while (heightLeft > 0) {
+            position = heightLeft - pdfHeight;
+            doc.addPage();
+            doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
+            heightLeft -= pageHeight;
+        }
+
         doc.save("Snooky_Delos_Reyes_Resume.pdf");
 
-        // Restore checkmarks
+        // Restore pseudo-elements
         listItems.forEach(li => li.style.listStyle = "");
     });
 }
