@@ -206,7 +206,7 @@ li::before { content: "✓"; margin-right: 6px; color: #05575a; }
 
 </div>
 
-<!-- Fixed Download Button -->
+<!-- Download Button -->
 <div class="download-btn-container">
     <button id="downloadBtn">⬇️ Download Resume PDF</button>
 </div>
@@ -221,7 +221,6 @@ window.onload = function() {
         const buttonContainer = document.querySelector(".download-btn-container");
         buttonContainer.style.display = "none";
 
-        // --- PAGE 1: Resume Content ---
         await html2canvas(resume, { scale: 2 }).then(canvas => {
             const imgData = canvas.toDataURL("image/png");
             const pageWidth = doc.internal.pageSize.getWidth();
@@ -229,34 +228,45 @@ window.onload = function() {
             const imgProps = doc.getImageProperties(imgData);
             const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
+            // PAGE 1: Resume
             doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
 
-            // --- PAGE 2: Certification + Name + Signature (Right-aligned) ---
+            // PAGE 2: Certification
             doc.addPage();
-            const yStart = 100; // spacing from top
+            const yStart = 100;
             doc.setFontSize(12);
-            doc.text("I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.", pageWidth / 2, yStart, { align: "center" });
+            doc.text("I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.", pageWidth/2, yStart, { align: "center" });
 
-            // Right-aligned name & signature
+            // Right-aligned signature block
             const rightMargin = 50;
-            const nameY = yStart + 40;
-            const signatureY = nameY + 10;
-            const signatureWidth = 120;
-            const signatureHeight = 50;
+            let signatureY = yStart + 40;
 
-            // Add full name (right-aligned)
-            doc.text("Snooky D. Delos Reyes", pageWidth - rightMargin, nameY, { align: "right" });
-
-            // Signature image
-            const signatureImg = "signature.png"; // replace with your signature file path
+            const signatureImg = "signature.png"; // Replace with your signature path
             const img = new Image();
             img.src = signatureImg;
             img.onload = function() {
-                doc.addImage(img, "PNG", pageWidth - rightMargin - signatureWidth, signatureY, signatureWidth, signatureHeight);
+                const maxWidth = 150;
+                const maxHeight = 60;
+                let sigWidth = img.width;
+                let sigHeight = img.height;
+                const aspectRatio = sigWidth / sigHeight;
+
+                if (sigWidth > maxWidth) { sigWidth = maxWidth; sigHeight = sigWidth / aspectRatio; }
+                if (sigHeight > maxHeight) { sigHeight = maxHeight; sigWidth = sigHeight * aspectRatio; }
+
+                // Signature above name
+                doc.addImage(img, "PNG", pageWidth - rightMargin - sigWidth, signatureY, sigWidth, sigHeight);
+
+                const nameY = signatureY + sigHeight + 5;
+                doc.text("Snooky D. Delos Reyes", pageWidth - rightMargin, nameY, { align: "right" });
+
                 doc.save("Snooky_Delos_Reyes_Resume.pdf");
                 buttonContainer.style.display = "block";
             };
+
             img.onerror = function() {
+                const nameY = signatureY + 5;
+                doc.text("Snooky D. Delos Reyes", pageWidth - rightMargin, nameY, { align: "right" });
                 doc.save("Snooky_Delos_Reyes_Resume.pdf");
                 buttonContainer.style.display = "block";
             };
