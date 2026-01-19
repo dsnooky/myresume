@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snooky D. Delos Reyes Resume</title>
 
-<!-- jsPDF + html2canvas -->
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
 body {
@@ -243,6 +242,7 @@ li::before {
     <button id="downloadBtn">⬇️ Download Resume PDF</button>
 </div>
 
+<!-- PDF Script -->
 <script>
 window.onload = function() {
     const downloadBtn = document.getElementById("downloadBtn");
@@ -250,33 +250,27 @@ window.onload = function() {
     downloadBtn.addEventListener("click", async function() {
         const { jsPDF } = window.jspdf;
         const resume = document.getElementById("resume");
-        const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-        // Hide button for PDF
+        // Hide button while generating PDF
         const buttonContainer = document.querySelector(".download-btn-container");
         buttonContainer.style.display = "none";
 
-        // Render resume using html2canvas
-        await html2canvas(resume, { scale: 2 }).then(canvas => {
-            const imgData = canvas.toDataURL("image/png");
-            const pageWidth = doc.internal.pageSize.getWidth();
-            const pageHeight = doc.internal.pageSize.getHeight();
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+        // Create jsPDF instance
+        const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-            // Add first page
-            doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
-
-            // Add second page if content overflows
-            if (pdfHeight > pageHeight) {
-                doc.addPage();
-                doc.addImage(imgData, "PNG", 0, -pageHeight, pageWidth, pdfHeight);
-            }
-
-            doc.save("Snooky_Delos_Reyes_Resume.pdf");
-
-            // Restore button
-            buttonContainer.style.display = "block";
+        // Convert HTML to PDF
+        await doc.html(resume, {
+            callback: function (pdf) {
+                pdf.save("Snooky_Delos_Reyes_Resume.pdf");
+                buttonContainer.style.display = "block"; // Restore button
+            },
+            x: 20,      // Left margin
+            y: 20,      // Top margin
+            html2canvas: {
+                scale: 1.5,
+                useCORS: true
+            },
+            autoPaging: 'text' // Automatic page breaks
         });
     });
 };
