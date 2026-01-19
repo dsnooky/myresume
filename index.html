@@ -86,27 +86,33 @@ li::before {
 
 /* Certification */
 .certification {
-    margin-top: 20px;
+    margin-top: 40px;
+    text-align: center;
     font-style: italic;
 }
 
-/* Centered Download Button */
+/* Download Button */
 .download-btn-container {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
     text-align: center;
-    margin: 20px 0;
+    z-index: 1000;
 }
 
-button {
-    background: #03363d;
+#downloadBtn {
+    background-color: #03363d;
     color: white;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 12px 22px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
+    transition: background-color 0.2s;
 }
-button:hover {
-    background: #05575a;
+
+#downloadBtn:hover {
+    background-color: #05575a;
 }
 
 /* Responsive */
@@ -135,9 +141,9 @@ button:hover {
     p, li {
         font-size: 12px;
     }
-    button {
+    #downloadBtn {
         font-size: 12px;
-        padding: 8px 16px;
+        padding: 10px 18px;
     }
 }
 </style>
@@ -152,7 +158,7 @@ button:hover {
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 0908-313-1655 | ✉️ workwithsnooky@gmail.com</p>
+            <p>📞 0908 313 1655 | ✉️ workwithsnooky@gmail.com</p>
         </div>
     </div>
 
@@ -174,7 +180,7 @@ button:hover {
             <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
             <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
             <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
-            <li>Assisted in enforcing company policies, procedures, and operational standards.</li>
+            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
             <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
             <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
             <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
@@ -187,7 +193,7 @@ button:hover {
             <li>Welcomed guests and assisted with check-ins, check-outs, and general inquiries.</li>
             <li>Managed room reservations, guest records, and payment transactions accurately.</li>
             <li>Coordinated with housekeeping and maintenance teams to ensure room readiness and guest satisfaction.</li>
-            <li>Handled guest concerns professionally and resolved issues promptly.</li>
+            <li>Handled guest concerns professionally and resolved issues in a timely manner.</li>
             <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
         </ul>
 
@@ -238,55 +244,51 @@ button:hover {
     <!-- HOBBIES -->
     <div class="section">
         <h2>❤️ HOBBIES & INTERESTS</h2>
-        <p>Creating Excel templates, Website Designing, Reading</p>
+        <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
     <!-- CERTIFICATION -->
-<div class="section certification">
-    <p style="margin-top: 40px; text-align: center; font-style: italic;">
-        I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.
-    </p>
-</div>
-
+    <div class="section certification">
+        <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
+    </div>
 
 </div>
 
-<!-- Centered Download Button -->
+<!-- Fixed Download Button -->
 <div class="download-btn-container">
-    <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
+    <button id="downloadBtn">⬇️ Download Resume PDF</button>
 </div>
 
 <script>
 async function downloadPDF() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit: "pt", format: "a4" });
     const resume = document.getElementById("resume");
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-    // Hide the download button for PDF
-    document.querySelector(".download-btn-container").style.display = "none";
+    // Hide the download button in PDF
+    const buttonContainer = document.querySelector(".download-btn-container");
+    buttonContainer.style.display = "none";
 
-    // Force split into 2 pages
-    const pageHeight = doc.internal.pageSize.getHeight();
     const pageWidth = doc.internal.pageSize.getWidth();
 
     await doc.html(resume, {
-        callback: function (doc) {
-            // Add a second blank page if needed to make it exactly 2 pages
-            if (doc.getNumberOfPages() === 1) {
-                doc.addPage();
-            }
-            doc.save("Snooky_Delos_Reyes_Resume.pdf");
-            // Restore button
-            document.querySelector(".download-btn-container").style.display = "block";
-        },
         x: 20,
         y: 20,
-        width: pageWidth - 40, // leave margins
-        windowWidth: resume.scrollWidth
+        width: pageWidth - 40,
+        windowWidth: resume.scrollWidth,
+        callback: function(doc) {
+            // Force exactly 2 pages
+            if (doc.getNumberOfPages() === 1) doc.addPage();
+            doc.save("Snooky_Delos_Reyes_Resume.pdf");
+            // Restore button
+            buttonContainer.style.display = "block";
+        }
     });
 }
+
+// Attach click event
+document.getElementById("downloadBtn").addEventListener("click", downloadPDF);
 </script>
 
 </body>
 </html>
-
