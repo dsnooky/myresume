@@ -137,7 +137,7 @@ li::before {
 
     <!-- HEADER -->
     <div class="header">
-        <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
+        <img src="FB_IMG_1768553094397.jpg" crossOrigin="anonymous" alt="Snooky D. Delos Reyes">
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
@@ -248,15 +248,14 @@ window.onload = function() {
     const downloadBtn = document.getElementById("downloadBtn");
 
     downloadBtn.addEventListener("click", async function() {
-        const { jsPDF } = window.jspdf;
         const resume = document.getElementById("resume");
+        const buttonContainer = document.querySelector(".download-btn-container");
 
         // Hide button while generating PDF
-        const buttonContainer = document.querySelector(".download-btn-container");
         buttonContainer.style.display = "none";
 
         // Create jsPDF instance
-        const doc = new jsPDF({ unit: "pt", format: "a4" });
+        const doc = new window.jspdf.jsPDF({ unit: "pt", format: "a4" });
 
         // Convert HTML to PDF
         await doc.html(resume, {
@@ -264,13 +263,12 @@ window.onload = function() {
                 pdf.save("Snooky_Delos_Reyes_Resume.pdf");
                 buttonContainer.style.display = "block"; // Restore button
             },
-            x: 20,      // Left margin
-            y: 20,      // Top margin
+            x: 20,
+            y: 20,
             html2canvas: {
-                scale: 1.5,
+                scale: 2,
                 useCORS: true
-            },
-            autoPaging: 'text' // Automatic page breaks
+            }
         });
     });
 };
