@@ -46,19 +46,11 @@ body {
     flex: 1;
     min-width: 200px;
 }
-.header-info h1 {
-    margin: 0;
-    font-size: 24px;
-}
-.header-info p {
-    margin: 2px 0;
-    font-size: 13px;
-}
+.header-info h1 { margin: 0; font-size: 24px; }
+.header-info p { margin: 2px 0; font-size: 13px; }
 
 /* Sections */
-.section {
-    margin-top: 15px;
-}
+.section { margin-top: 15px; }
 h2 {
     font-size: 17px;
     margin-bottom: 5px;
@@ -66,31 +58,13 @@ h2 {
     border-bottom: 2px solid #03363d;
     padding-bottom: 3px;
 }
-h3 {
-    font-size: 15px;
-    margin: 6px 0 3px 0;
-    color: #05575a;
-}
-p, li {
-    font-size: 13px;
-    line-height: 1.4;
-}
-ul {
-    padding-left: 20px;
-    margin: 4px 0;
-}
-li::before {
-    content: "✓";
-    margin-right: 6px;
-    color: #05575a;
-}
+h3 { font-size: 15px; margin: 6px 0 3px 0; color: #05575a; }
+p, li { font-size: 13px; line-height: 1.4; }
+ul { padding-left: 20px; margin: 4px 0; }
+li::before { content: "✓"; margin-right: 6px; color: #05575a; }
 
-/* Certification */
-.certification {
-    margin-top: 60px;
-    text-align: center;
-    font-style: italic;
-}
+/* Certification spacing */
+.certification { text-align: center; font-style: italic; }
 
 /* Download Button */
 .download-btn-container {
@@ -99,34 +73,25 @@ li::before {
     width: 100%;
     text-align: center;
     z-index: 1000;
+    padding-bottom: 10px;
 }
 #downloadBtn {
     background-color: #03363d;
     color: white;
     border: none;
-    padding: 12px 22px;
+    padding: 14px 24px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s;
 }
-#downloadBtn:hover {
-    background-color: #05575a;
-}
+#downloadBtn:hover { background-color: #05575a; }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    .resume-container {
-        padding: 15px;
-    }
-    .section {
-        margin-top: 12px;
-    }
-    .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+    .resume-container { padding: 15px; }
+    .section { margin-top: 12px; }
+    .header { flex-direction: column; align-items: center; text-align: center; }
     .header-info h1 { font-size: 20px; word-break: break-word; }
     .header-info p { font-size: 12px; }
     .header img { width: 80px; height: 80px; }
@@ -134,8 +99,7 @@ li::before {
     h3 { font-size: 14px; }
     p, li { font-size: 12px; line-height: 1.5; }
     ul { padding-left: 18px; }
-    #downloadBtn { font-size: 12px; padding: 10px 18px; }
-    .certification { margin-top: 50px; }
+    #downloadBtn { font-size: 12px; padding: 12px 20px; }
 }
 </style>
 </head>
@@ -162,7 +126,7 @@ li::before {
     <!-- PROFESSIONAL EXPERIENCE -->
     <div class="section">
         <h2>💼 PROFESSIONAL EXPERIENCE</h2>
-
+        <!-- Administrative Assistant -->
         <h3>Administrative Assistant</h3>
         <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em><br>National Road, Payompon, Mamburao, Occidental Mindoro</p>
         <ul>
@@ -177,7 +141,7 @@ li::before {
             <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
             <li>Addressed customer inquiries and ensured compliance with safety, cleanliness, and service standards.</li>
         </ul>
-
+        <!-- Hotel Receptionist -->
         <h3>Hotel Receptionist</h3>
         <p><em>Arkbayz Suites | 2016 – 2019</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
         <ul>
@@ -187,7 +151,7 @@ li::before {
             <li>Handled guest concerns professionally and resolved issues promptly.</li>
             <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
         </ul>
-
+        <!-- Waitress -->
         <h3>Waitress</h3>
         <p><em>Nova Dive Shop | 2008 – 2009</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
         <ul>
@@ -253,17 +217,14 @@ li::before {
 <script>
 window.onload = function() {
     const downloadBtn = document.getElementById("downloadBtn");
-
     downloadBtn.addEventListener("click", async function() {
         const { jsPDF } = window.jspdf;
         const resume = document.getElementById("resume");
         const doc = new jsPDF({ unit: "pt", format: "a4" });
-
-        // Hide button for PDF
         const buttonContainer = document.querySelector(".download-btn-container");
         buttonContainer.style.display = "none";
 
-        // Render resume using html2canvas
+        // --- PAGE 1: Resume Content ---
         await html2canvas(resume, { scale: 2 }).then(canvas => {
             const imgData = canvas.toDataURL("image/png");
             const pageWidth = doc.internal.pageSize.getWidth();
@@ -271,19 +232,31 @@ window.onload = function() {
             const imgProps = doc.getImageProperties(imgData);
             const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-            // Add first page
+            // Add resume image to first page
             doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
 
-            // Add second page if content overflows
-            if (pdfHeight > pageHeight) {
-                doc.addPage();
-                doc.addImage(imgData, "PNG", 0, -pageHeight, pageWidth, pdfHeight);
-            }
+            // --- PAGE 2: Certification + Name + Signature ---
+            doc.addPage();
+            const yStart = 100; // spacing from top
+            doc.setFontSize(12);
+            doc.text("I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.", pageWidth / 2, yStart, { align: "center" });
+            doc.text("Snooky D. Delos Reyes", pageWidth / 2, yStart + 40, { align: "center" });
 
-            doc.save("Snooky_Delos_Reyes_Resume.pdf");
-
-            // Restore button
-            buttonContainer.style.display = "block";
+            // Signature
+            const signatureImg = "signature.png"; // replace with your signature file path
+            const img = new Image();
+            img.src = signatureImg;
+            img.onload = function() {
+                const signatureWidth = 120;
+                const signatureHeight = 50;
+                doc.addImage(img, "PNG", (pageWidth - signatureWidth) / 2, yStart + 50, signatureWidth, signatureHeight);
+                doc.save("Snooky_Delos_Reyes_Resume.pdf");
+                buttonContainer.style.display = "block";
+            };
+            img.onerror = function() {
+                doc.save("Snooky_Delos_Reyes_Resume.pdf");
+                buttonContainer.style.display = "block";
+            };
         });
     });
 };
