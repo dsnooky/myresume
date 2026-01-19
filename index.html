@@ -45,15 +45,7 @@
         border: 3px solid #03363d;
     }
 
-    /* Name Style */
-    .left-column h2 {
-        font-size: 28px; /* bigger */
-        font-weight: 900; /* extra bold */
-        color: #03363d;
-        margin-bottom: 10px;
-    }
-
-    h3, h4 {
+    h2, h3, h4 {
         margin-top: 0;
         margin-bottom: 10px;
         color: #03363d;
@@ -335,8 +327,17 @@ document.getElementById("downloadBtn").addEventListener("click", async () => {
     let heightLeft = imgHeight;
     let position = 0;
 
-    // First page
+    // Draw the full image first
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+
+    // Overlay the name in bigger bold font at original left-column location
+    const name = "Snooky D. Delos Reyes";
+    pdf.setFontSize(20);            // Bigger font
+    pdf.setFont(undefined, "bold"); // Bold
+    const xPos = 65; // distance from left
+    const yPos = 45; // distance from top
+    pdf.text(name, xPos, yPos);
+
     heightLeft -= pdfHeight;
 
     // Additional pages if needed
