@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snooky D. Delos Reyes Resume</title>
+
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- html2canvas (required for doc.html()) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -138,7 +143,7 @@
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 090831316t5 | ✉️ workwithsnooky@gmail.com</p>
+            <p>📞 0908 313 1655 | ✉️ workwithsnooky@gmail.com</p>
         </div>
     </div>
 
@@ -160,7 +165,7 @@
             <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
             <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
             <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
-            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
+            <li>Assisted in enforcing company policies, procedures, and operational standards.</li>
             <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
             <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
             <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
@@ -227,6 +232,7 @@
         <p>Creating Excel templates, Web designing, Reading</p>
     </div>
 
+    <!-- Download Button -->
     <button onclick="downloadPDF()">⬇️ Download Resume PDF</button>
 
 </div>
@@ -235,6 +241,7 @@
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({unit: 'pt', format: 'a4'});
+
     doc.html(document.getElementById('resume'), {
         callback: function (doc) {
             doc.save('Snooky_Delos_Reyes_Resume.pdf');
@@ -246,5 +253,6 @@ function downloadPDF() {
     });
 }
 </script>
+
 </body>
 </html>
