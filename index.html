@@ -126,7 +126,6 @@ li::before { content: "✓"; margin-right: 6px; color: #05575a; }
     <!-- PROFESSIONAL EXPERIENCE -->
     <div class="section">
         <h2>💼 PROFESSIONAL EXPERIENCE</h2>
-        <!-- Administrative Assistant -->
         <h3>Administrative Assistant</h3>
         <p><em>Petra Petroleum Service and Distribution | 2020 – 2025</em><br>National Road, Payompon, Mamburao, Occidental Mindoro</p>
         <ul>
@@ -141,7 +140,6 @@ li::before { content: "✓"; margin-right: 6px; color: #05575a; }
             <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
             <li>Addressed customer inquiries and ensured compliance with safety, cleanliness, and service standards.</li>
         </ul>
-        <!-- Hotel Receptionist -->
         <h3>Hotel Receptionist</h3>
         <p><em>Arkbayz Suites | 2016 – 2019</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
         <ul>
@@ -151,7 +149,6 @@ li::before { content: "✓"; margin-right: 6px; color: #05575a; }
             <li>Handled guest concerns professionally and resolved issues promptly.</li>
             <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
         </ul>
-        <!-- Waitress -->
         <h3>Waitress</h3>
         <p><em>Nova Dive Shop | 2008 – 2009</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
         <ul>
@@ -232,24 +229,30 @@ window.onload = function() {
             const imgProps = doc.getImageProperties(imgData);
             const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-            // Add resume image to first page
             doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
 
-            // --- PAGE 2: Certification + Name + Signature ---
+            // --- PAGE 2: Certification + Name + Signature (Right-aligned) ---
             doc.addPage();
             const yStart = 100; // spacing from top
             doc.setFontSize(12);
             doc.text("I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.", pageWidth / 2, yStart, { align: "center" });
-            doc.text("Snooky D. Delos Reyes", pageWidth / 2, yStart + 40, { align: "center" });
 
-            // Signature
+            // Right-aligned name & signature
+            const rightMargin = 50;
+            const nameY = yStart + 40;
+            const signatureY = nameY + 10;
+            const signatureWidth = 120;
+            const signatureHeight = 50;
+
+            // Add full name (right-aligned)
+            doc.text("Snooky D. Delos Reyes", pageWidth - rightMargin, nameY, { align: "right" });
+
+            // Signature image
             const signatureImg = "signature.png"; // replace with your signature file path
             const img = new Image();
             img.src = signatureImg;
             img.onload = function() {
-                const signatureWidth = 120;
-                const signatureHeight = 50;
-                doc.addImage(img, "PNG", (pageWidth - signatureWidth) / 2, yStart + 50, signatureWidth, signatureHeight);
+                doc.addImage(img, "PNG", pageWidth - rightMargin - signatureWidth, signatureY, signatureWidth, signatureHeight);
                 doc.save("Snooky_Delos_Reyes_Resume.pdf");
                 buttonContainer.style.display = "block";
             };
