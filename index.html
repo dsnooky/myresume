@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snooky D. Delos Reyes - Resume</title>
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
     /* General Styles */
     body {
@@ -31,14 +33,16 @@
         background-color: #eaf1f5;
         padding: 20px;
         border-radius: 10px;
+        text-align: center;
     }
 
     .profile-pic {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 15px;
+        border: 3px solid #03363d;
     }
 
     h2, h3, h4 {
@@ -49,6 +53,7 @@
 
     .section {
         margin-bottom: 20px;
+        text-align: left;
     }
 
     .section p, .section li {
@@ -57,6 +62,11 @@
 
     .skills li {
         margin-bottom: 8px;
+    }
+
+    .section i {
+        color: #03363d;
+        margin-right: 8px;
     }
 
     /* Right Column */
@@ -83,13 +93,23 @@
         padding-left: 20px;
     }
 
-    /* Footer */
+    /* Certification */
     .certification {
         margin-top: 20px;
         font-style: italic;
         font-size: 0.9em;
     }
 
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+        .resume-container {
+            grid-template-columns: 1fr;
+        }
+
+        .left-column {
+            text-align: left;
+        }
+    }
 </style>
 </head>
 <body>
@@ -98,15 +118,17 @@
 
     <!-- Left Column -->
     <div class="left-column">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+
         <div class="section">
             <h2>Snooky D. Delos Reyes</h2>
-            <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 0908-313-1655</p>
-            <p>✉️ workwithsnooky@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
+            <p><i class="fas fa-phone"></i> 0908-313-1655</p>
+            <p><i class="fas fa-envelope"></i> workwithsnooky@gmail.com</p>
         </div>
 
         <div class="section">
-            <h3>Personal Information</h3>
+            <h3><i class="fas fa-user"></i> Personal Information</h3>
             <p><strong>Date of Birth:</strong> [Insert DOB]</p>
             <p><strong>Age:</strong> [Insert Age]</p>
             <p><strong>Civil Status:</strong> [Insert Status]</p>
@@ -115,7 +137,7 @@
         </div>
 
         <div class="section">
-            <h3>Hard Skills</h3>
+            <h3><i class="fas fa-cogs"></i> Hard Skills</h3>
             <ul class="skills">
                 <li>POS Systems & Cashiering</li>
                 <li>Microsoft Office Suite</li>
@@ -128,7 +150,7 @@
         </div>
 
         <div class="section">
-            <h3>Soft Skills</h3>
+            <h3><i class="fas fa-lightbulb"></i> Soft Skills</h3>
             <ul class="skills">
                 <li>Leadership & Team Management</li>
                 <li>Communication & Interpersonal Skills</li>
@@ -141,7 +163,7 @@
         </div>
 
         <div class="section">
-            <h3>Character References</h3>
+            <h3><i class="fas fa-user-check"></i> Character References</h3>
             <p><strong>[Reference 1 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
             <p><strong>[Reference 2 Name]</strong> – [Position / Company]<br>📞 [Phone] | ✉️ [Email]</p>
         </div>
@@ -150,12 +172,12 @@
     <!-- Right Column -->
     <div class="right-column">
         <div class="section">
-            <h3>Professional Summary</h3>
+            <h3><i class="fas fa-file-alt"></i> Professional Summary</h3>
             <p>Dynamic and results-oriented professional with extensive experience in restaurant operations, hospitality management, and administrative leadership. Proven ability to oversee daily operations, lead and train staff, ensure exceptional customer service, and maintain operational efficiency. Skilled in inventory management, cash handling, scheduling, and problem-solving.</p>
         </div>
 
         <div class="section experience">
-            <h3>Professional Experience</h3>
+            <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
 
             <p class="job-title">Administrative Assistant / Secretary</p>
             <p class="company">Petra Petroleum Service and Distribution – Mamburao Branch | Jan 2020 – Dec 2023</p>
@@ -184,13 +206,13 @@
         </div>
 
         <div class="section education">
-            <h3>Education</h3>
+            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <p><strong>Bachelor of Science in Information Technology</strong> – Undergraduate (2022–2023)</p>
             <p><strong>Associate in Hotel and Restaurant Management</strong> – Graduate (2006–2008)</p>
         </div>
 
         <div class="section certification">
-            <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
+            <p><i class="fas fa-file-signature"></i> I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
             <p><strong>Snooky D. Delos Reyes</strong></p>
         </div>
     </div>
