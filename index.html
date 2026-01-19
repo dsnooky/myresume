@@ -140,8 +140,7 @@
 </head>
 <body>
 
-<!-- PAGE 1 -->
-<div id="resume-page1" class="resume-container">
+<div class="resume-container" id="resume">
 
     <!-- HEADER -->
     <div class="header">
@@ -149,7 +148,7 @@
         <div class="header-info">
             <h1>SNOOKY D. DELOS REYES</h1>
             <p>📍 Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p>📞 0908-313-1655 | ✉️ workwithsnooky@gmail.com</p>
+            <p>📞 0908 313 1655 | ✉️ workwithsnooky@gmail.com</p>
         </div>
     </div>
 
@@ -159,7 +158,7 @@
         <p>Dedicated and dependable professional with extensive experience in administrative operations, cashiering, customer service, and hospitality. Proven ability to manage daily branch operations, maintain accurate records, and support management in implementing company policies. Highly organized, detail-oriented, and capable of working efficiently under minimal supervision while delivering excellent service.</p>
     </div>
 
-    <!-- PROFESSIONAL EXPERIENCE (First part) -->
+    <!-- PROFESSIONAL EXPERIENCE -->
     <div class="section">
         <h2>💼 PROFESSIONAL EXPERIENCE</h2>
 
@@ -171,6 +170,11 @@
             <li>Prepared, organized, and maintained records, reports, and inventory documentation.</li>
             <li>Monitored fuel deliveries, stock levels, and store supplies to ensure uninterrupted operations.</li>
             <li>Handled petty cash, reimbursements, and financial documentation with accuracy and accountability.</li>
+            <li>Assisted the Branch Manager in enforcing company policies, procedures, and operational standards.</li>
+            <li>Coordinated staff schedules, attendance monitoring, and performance updates.</li>
+            <li>Communicated and coordinated with suppliers, contractors, and head office regarding operational needs.</li>
+            <li>Processed invoices, purchase orders, and other administrative documents promptly.</li>
+            <li>Addressed customer inquiries and ensured compliance with safety, cleanliness, and service standards.</li>
         </ul>
 
         <h3>Hotel Receptionist</h3>
@@ -179,17 +183,10 @@
             <li>Welcomed guests and assisted with check-ins, check-outs, and general inquiries.</li>
             <li>Managed room reservations, guest records, and payment transactions accurately.</li>
             <li>Coordinated with housekeeping and maintenance teams to ensure room readiness and guest satisfaction.</li>
-            <li>Handled guest concerns professionally and resolved issues promptly.</li>
+            <li>Handled guest concerns professionally and resolved issues in a timely manner.</li>
+            <li>Maintained an organized and presentable front desk while supporting daily hotel operations.</li>
         </ul>
 
-    </div>
-</div>
-
-<!-- PAGE 2 -->
-<div id="resume-page2" class="resume-container">
-
-    <!-- PROFESSIONAL EXPERIENCE (continued) -->
-    <div class="section">
         <h3>Waitress</h3>
         <p><em>Nova Dive Shop | 2008 – 2009</em><br>Kanluran, Sabang, Puerto Galera, Oriental Mindoro</p>
         <ul>
@@ -239,6 +236,7 @@
         <h2>❤️ HOBBIES & INTERESTS</h2>
         <p>Creating Excel templates, Web designing, Reading</p>
     </div>
+
 </div>
 
 <!-- Centered Download Button -->
@@ -247,31 +245,45 @@
 </div>
 
 <script>
-async function downloadPDF() {
+function downloadPDF() {
     const { jsPDF } = window.jspdf;
+    const resume = document.getElementById("resume");
     const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-    // Hide download button for PDF
+    // Remove pseudo-elements for PDF
+    const listItems = resume.querySelectorAll("li");
+    listItems.forEach(li => li.style.listStyle = "none");
+
+    // Hide the download button
     document.querySelector(".download-btn-container").style.display = "none";
 
-    const pages = [document.getElementById("resume-page1"), document.getElementById("resume-page2")];
+    html2canvas(resume, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-    for (let i = 0; i < pages.length; i++) {
-        await doc.html(pages[i], {
-            x: 20,
-            y: 20,
-            width: 555,
-            callback: function () {
-                if (i < pages.length - 1) doc.addPage();
-            },
-            windowWidth: pages[i].scrollWidth
-        });
-    }
+        // Handle multi-page PDF
+        let heightLeft = pdfHeight;
+        let position = 0;
 
-    doc.save("Snooky_Delos_Reyes_Resume.pdf");
+        doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
+        heightLeft -= pageHeight;
 
-    // Show button again
-    document.querySelector(".download-btn-container").style.display = "block";
+        while (heightLeft > 0) {
+            position = heightLeft - pdfHeight;
+            doc.addPage();
+            doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
+            heightLeft -= pageHeight;
+        }
+
+        doc.save("Snooky_Delos_Reyes_Resume.pdf");
+
+        // Restore pseudo-elements and button
+        listItems.forEach(li => li.style.listStyle = "");
+        document.querySelector(".download-btn-container").style.display = "block";
+    });
 }
 </script>
 
