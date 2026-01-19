@@ -17,7 +17,6 @@ body {
     background: #f9f9f9;
     color: #03363d;
 }
-
 .resume-container {
     max-width: 780px;
     margin: auto;
@@ -26,6 +25,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     word-wrap: break-word;
+    margin-bottom: 20px;
 }
 
 /* Header */
@@ -87,7 +87,7 @@ li::before {
 
 /* Certification spacing */
 .certification {
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
     font-style: italic;
 }
@@ -127,15 +127,15 @@ li::before {
     h3 { font-size: 14px; }
     p, li { font-size: 12px; line-height: 1.5; }
     ul { padding-left: 18px; }
-    .certification { margin-top: 60px; font-size: 12px; }
+    .certification { margin-top: 40px; font-size: 12px; }
     #downloadBtn { font-size: 12px; padding: 12px 20px; }
 }
 </style>
 </head>
 <body>
 
-<div class="resume-container" id="resume">
-
+<!-- PAGE 1 -->
+<div class="resume-container" id="resume-page1">
     <!-- HEADER -->
     <div class="header">
         <img src="FB_IMG_1768553094397.jpg" alt="Snooky D. Delos Reyes">
@@ -193,7 +193,10 @@ li::before {
             <li>Delivered professional hospitality aligned with company service standards.</li>
         </ul>
     </div>
+</div>
 
+<!-- PAGE 2 -->
+<div class="resume-container" id="resume-page2">
     <!-- EDUCATION -->
     <div class="section">
         <h2>🎓 EDUCATION</h2>
@@ -235,7 +238,6 @@ li::before {
     <div class="section certification">
         <p>I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
     </div>
-
 </div>
 
 <!-- Fixed Download Button -->
@@ -250,37 +252,30 @@ window.onload = function() {
 
     downloadBtn.addEventListener("click", async function() {
         const { jsPDF } = window.jspdf;
-        const resume = document.getElementById("resume");
         const doc = new jsPDF({ unit: "pt", format: "a4" });
         const buttonContainer = document.querySelector(".download-btn-container");
 
         // Hide button while generating PDF
         buttonContainer.style.display = "none";
 
-        // Render resume as image
-        const canvas = await html2canvas(resume, { scale: 2, useCORS: true });
-        const imgData = canvas.toDataURL("image/png");
+        async function addPage(containerId, isFirstPage = false) {
+            const element = document.getElementById(containerId);
+            const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+            const imgData = canvas.toDataURL("image/png");
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const imgProps = doc.getImageProperties(imgData);
-        const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
-
-        let heightLeft = pdfHeight;
-        let position = 0;
-
-        // Add first page
-        doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
-        heightLeft -= pageHeight;
-
-        // Add remaining pages
-        while (heightLeft > 0) {
-            position = heightLeft - pdfHeight;
-            doc.addPage();
-            doc.addImage(imgData, "PNG", 0, position, pageWidth, pdfHeight);
-            heightLeft -= pageHeight;
+            if (!isFirstPage) doc.addPage();
+            doc.addImage(imgData, "PNG", 0, 0, pageWidth, pdfHeight);
         }
 
+        // Add both pages
+        await addPage("resume-page1", true);
+        await addPage("resume-page2");
+
+        // Save PDF
         doc.save("Snooky_Delos_Reyes_Resume.pdf");
 
         // Restore button
