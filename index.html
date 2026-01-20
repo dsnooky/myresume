@@ -217,6 +217,7 @@ ul { padding-left: 20px; }
 
 </div>
 
+<!-- Download Button -->
 <div style="text-align:center; margin: 20px;">
     <button id="downloadBtn" style="padding: 12px 20px; font-size: 16px; background-color: #03363d; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
         <i class="fas fa-download"></i> Download Resume (PDF)
@@ -236,29 +237,21 @@ document.getElementById("downloadBtn").addEventListener("click", async () => {
     const canvas = await html2canvas(resume, { scale: 2, useCORS: true, scrollY: -window.scrollY });
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
+
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
+
     const imgWidth = pdfWidth;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
     let heightLeft = imgHeight;
     let position = 0;
+
+    // First page
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-
-    // Dynamic font size for name to fit in left column width
-    const name = "Snooky D. Delos Reyes";
-    let fontSize = 20; // starting font
-    const maxWidth = 90; // max width of left column in mm
-    pdf.setFont(undefined, "bold");
-    while (pdf.getTextWidth(name) > maxWidth && fontSize > 10) {
-        fontSize -= 1;
-        pdf.setFontSize(fontSize);
-    }
-    const xPos = 20; // left margin inside left column
-    const yPos = 45; // vertical position matching original name
-    pdf.text(name, xPos, yPos);
-
     heightLeft -= pdfHeight;
+
+    // Additional pages
     while (heightLeft > 0) {
         position = heightLeft - imgHeight;
         pdf.addPage();
