@@ -3,115 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Professional resume of Snooky D. Delos Reyes">
 <title>Snooky D. Delos Reyes - Resume</title>
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
+:root {
+    --primary: #03363d;
+    --primary-dark: #02272c;
+    --sidebar: #eaf1f5;
+    --page-bg: #f4f4f9;
+    --text: #333;
+    --muted: #666;
+    --border: #d9dee2;
+    --white: #fff;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
-    padding: 0;
-    color: #333;
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: var(--page-bg);
+    line-height: 1.55;
 }
 
 .resume-container {
-    max-width: 1000px;
-    margin: 20px auto;
-    background-color: #fff;
+    width: min(100%, 1000px);
+    margin: 0 auto;
+    background: var(--white);
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+    gap: 24px;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .10);
 }
 
 .left-column {
-    background-color: #eaf1f5;
-    padding: 20px;
+    background: var(--sidebar);
+    padding: 24px;
     border-radius: 10px;
     text-align: center;
+    min-width: 0;
+}
+
+.right-column {
+    padding: 4px 8px;
+    min-width: 0;
 }
 
 .profile-pic {
+    display: block;
     width: 130px;
     height: 130px;
+    margin: 0 auto 18px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 3px solid #03363d;
+    border: 3px solid var(--primary);
+    background: #fff;
 }
 
-h2, h3, h4 { margin: 0 0 10px 0; color: #03363d; }
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 0 10px;
+    color: var(--primary);
+    line-height: 1.25;
+}
 
-.section { margin-bottom: 20px; text-align: left; }
+h2 {
+    font-size: 1.45rem;
+}
 
-.section p, .section li { margin: 5px 0; }
+h3 {
+    font-size: 1.05rem;
+}
 
-.skills li { margin-bottom: 8px; }
+p {
+    margin: 6px 0;
+}
 
-.section i { color: #03363d; margin-right: 8px; }
+.section {
+    margin-bottom: 22px;
+    text-align: left;
+}
 
-hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+.left-column > .section:first-of-type {
+    text-align: center;
+}
 
-.right-column { padding: 20px; }
+.section i {
+    color: var(--primary);
+    margin-right: 7px;
+    width: 16px;
+    text-align: center;
+}
 
-.experience { margin-bottom: 20px; }
+hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 18px 0;
+}
 
-.job-title { font-weight: bold; color: #03363d; margin-top: 10px; }
+ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+}
 
-.company, .dates { font-style: italic; color: #555; font-size: 0.9em; }
+li {
+    margin: 5px 0;
+}
 
-ul { padding-left: 20px; }
+.skills li {
+    margin-bottom: 7px;
+}
 
-.certification { margin-top: 20px; font-style: italic; font-size: 0.9em; }
+.experience {
+    margin-bottom: 0;
+}
 
-@media screen and (max-width: 768px) {
-    .resume-container { grid-template-columns: 1fr; }
-    .left-column { text-align: left; }
+.job-title {
+    margin: 12px 0 2px;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.company,
+.dates {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: .92rem;
+}
+
+.certification {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: .9rem;
+}
+
+.download-wrap {
+    width: min(100%, 1000px);
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+#downloadBtn {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--primary);
+    color: #fff;
+    border: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+#downloadBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+#downloadBtn:disabled {
+    opacity: .65;
+    cursor: wait;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .resume-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .left-column {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .left-column > .section:first-of-type {
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+
+    .right-column {
+        padding: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .resume-container {
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .left-column {
+        padding: 16px;
+    }
+
+    .profile-pic {
+        width: 105px;
+        height: 105px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    ul {
+        padding-left: 18px;
+    }
+}
+
+/* Print styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+
+    body {
+        padding: 0;
+        background: #fff;
+        font-size: 10.5pt;
+    }
+
+    .resume-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 32% 68%;
+        gap: 12mm;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .left-column {
+        padding: 8mm;
+        border-radius: 0;
+    }
+
+    .right-column {
+        padding: 0;
+    }
+
+    .download-wrap {
+        display: none !important;
+    }
+
+    .section,
+    .experience,
+    .job-title,
+    .company {
+        break-inside: avoid;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<div class="resume-container">
+<main class="resume-container" id="resume">
 
-    <div class="left-column">
-        <img src="46bd3c56-4c50-45f0-af2e-bacc7dae8efe.png" alt="Profile Picture" class="profile-pic">
+    <aside class="left-column">
+        <img
+            src="https://dsnooky.github.io/myresume/46bd3c56-4c50-45f0-af2e-bacc7dae8efe.png"
+            alt="Profile Picture"
+            class="profile-pic"
+        >
 
-        <div class="section">
+        <section class="section">
             <h2>Snooky D. Delos Reyes</h2>
-            <p><i class="fas fa-map-marker-alt"></i> Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
-            <p><i class="fas fa-phone"></i> 0962-092-6818</p>
-            <p><i class="fas fa-envelope"></i> workwithsnooky@gmail.com</p>
-        </div>
+            <p><i class="fas fa-map-marker-alt"></i>Balibago 1, Brgy. Armado, Abra de Ilog, Occidental Mindoro 5108</p>
+            <p><i class="fas fa-phone"></i>0962-092-6818</p>
+            <p><i class="fas fa-envelope"></i>workwithsnooky@gmail.com</p>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-file-alt"></i> Professional Summary</h3>
-            <p>Dedicated, hardworking, and adaptable professional with extensive experience in administrative support, branch operations, customer service, hospitality, cashiering, documentation, and staff coordination. Experienced in handling daily operations, preparing reports, maintaining records, managing inventory, processing customer transactions, and assisting customers with professionalism. A fast learner with strong communication, organizational, problem-solving, and computer skills. Seeking a position where I can contribute my experience, reliability, and willingness to learn while growing professionally within the company.</p>
-        </div>
+        <section class="section">
+            <h3><i class="fas fa-file-alt"></i>Professional Summary</h3>
+            <p>
+                Dedicated, hardworking, and adaptable professional with extensive experience in
+                administrative support, branch operations, customer service, hospitality, cashiering,
+                documentation, and staff coordination. Experienced in handling daily operations,
+                preparing reports, maintaining records, managing inventory, processing customer
+                transactions, and assisting customers with professionalism. A fast learner with strong
+                communication, organizational, problem-solving, and computer skills. Seeking a position
+                where I can contribute my experience, reliability, and willingness to learn while
+                growing professionally within the company.
+            </p>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-user"></i> Personal Information</h3>
-            <p><strong>Date of Birth:</strong> January 29,1989</p>
+        <section class="section">
+            <h3><i class="fas fa-user"></i>Personal Information</h3>
+            <p><strong>Date of Birth:</strong> January 29, 1989</p>
             <p><strong>Age:</strong> 37 years old</p>
             <p><strong>Civil Status:</strong> Married</p>
             <p><strong>Nationality:</strong> Filipino</p>
             <p><strong>Languages:</strong> English, Filipino</p>
-        </div>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-            <p><strong>Bachelor of Science in Information Technology</strong><br>School: Occidental Mindoro State College<br>Undergraduate: 2022-2023</p>
-            <p><strong>Associate in Hotel and Restaurant Management</strong><br>School: St. Clare College of Caloocan<br>Graduated: 2008</p>
-        </div>
+        <section class="section">
+            <h3><i class="fas fa-graduation-cap"></i>Education</h3>
+            <p>
+                <strong>Bachelor of Science in Information Technology</strong><br>
+                School: Occidental Mindoro State College<br>
+                Undergraduate: 2022-2023
+            </p>
+            <p>
+                <strong>Associate in Hotel and Restaurant Management</strong><br>
+                School: St. Clare College of Caloocan<br>
+                Graduated: 2008
+            </p>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-cogs"></i> Core Skills</h3>
+        <section class="section">
+            <h3><i class="fas fa-cogs"></i>Core Skills</h3>
             <ul class="skills">
                 <li>Administrative and Office Support</li>
                 <li>Customer Service and Client Assistance</li>
@@ -120,108 +375,140 @@ ul { padding-left: 20px; }
                 <li>Report Preparation and Documentation</li>
                 <li>Cash Handling and Payment Processing</li>
                 <li>Inventory Monitoring and Ordering</li>
-		<li>Staff Scheduling and Coordination</li>
-		<li>Filing and Document Management</li>
-		<li>Computer and Digital Skills</li>
-		<li>Problem Solving and Decision Making</li>
-		<li>Teamwork and Communication</li>
-		<li>Time Management and Organization</li>
-		<li>Adaptability and Willingness to Learn</li>
+                <li>Staff Scheduling and Coordination</li>
+                <li>Filing and Document Management</li>
+                <li>Computer and Digital Skills</li>
+                <li>Problem Solving and Decision Making</li>
+                <li>Teamwork and Communication</li>
+                <li>Time Management and Organization</li>
+                <li>Adaptability and Willingness to Learn</li>
             </ul>
-        </div>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-lightbulb"></i> Others</h3>
+        <section class="section">
+            <h3><i class="fas fa-lightbulb"></i>Others</h3>
             <ul class="skills">
                 <li>Civil Service Passer - Subprofessional Level</li>
-              
             </ul>
-        </div>
+        </section>
+
         <hr>
 
-        <div class="section">
-            <h3><i class="fas fa-user-check"></i> Character References</h3>
-            <p><strong>Ma. Kay Datinguinoo</strong> – [Manager / Ark Bayz Suites]<br>📞 [0975 821 5029] </p>
-            <p><strong>Evony Lariouque</strong> – [Cashier / Seaoil Philippines]<br>📞 [0952 627 8798] </p>
-            <p><strong>Aiza Flor Moises</strong> – [Cashier / Petra Petroleum Service and Distribution]<br>📞 [0966 783 4200] </p>
-        </div>
-    </div>
+        <section class="section">
+            <h3><i class="fas fa-user-check"></i>Character References</h3>
+            <p>
+                <strong>Ma. Kay Datinguinoo</strong> – Manager / Ark Bayz Suites<br>
+                📞 0975 821 5029
+            </p>
+            <p>
+                <strong>Evony Lariouque</strong> – Cashier / Seaoil Philippines<br>
+                📞 0952 627 8798
+            </p>
+            <p>
+                <strong>Aiza Flor Moises</strong> – Cashier / Petra Petroleum Service and Distribution<br>
+                📞 0966 783 4200
+            </p>
+        </section>
+    </aside>
 
-    <div class="right-column">
-        <div class="section experience">
-            <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
-            <p class="job-title">Administrative Assistant/ Secretary</p>
-            <p class="company">Petra Petroleum Service and Distribution – Santa Cruz Branch | Jan 2024 – Dec 2025</p>
-            <ul>
-                <li>Oversaw daily branch operations, ensuring smooth workflow and adherence to company policies.</li>
-                <li>Supervising staff and coordinating tasks to meet operational goals.</li>
-                <li>Managed schedules, delegated responsibilities, and monitored staff performance for efficiency and accountability.</li>
-                <li>Handled customer inquiries, complaints, and transactions, maintaining high standards of service.</li>
-                <li>Prepared reports on sales, inventory, and daily operations to support management decisions.</li>
-                <li>Controlled inventory, monitored supplies, and coordinated orders to prevent shortages or excess.</li>
-                <li>Assisted in implementing operational improvements, streamlining processes for better performance.</li>
-                <li>Maintained accurate records, documentation, and compliance with internal procedures.</li>
-            </ul>
+    <section class="right-column">
+        <section class="section experience">
+            <h3><i class="fas fa-briefcase"></i>Professional Experience</h3>
+
+            <article class="experience">
+                <p class="job-title">Administrative Assistant / Secretary</p>
+                <p class="company">Petra Petroleum Service and Distribution – Santa Cruz Branch | Jan 2024 – Dec 2025</p>
+                <ul>
+                    <li>Oversaw daily branch operations, ensuring smooth workflow and adherence to company policies.</li>
+                    <li>Supervising staff and coordinating tasks to meet operational goals.</li>
+                    <li>Managed schedules, delegated responsibilities, and monitored staff performance for efficiency and accountability.</li>
+                    <li>Handled customer inquiries, complaints, and transactions, maintaining high standards of service.</li>
+                    <li>Prepared reports on sales, inventory, and daily operations to support management decisions.</li>
+                    <li>Controlled inventory, monitored supplies, and coordinated orders to prevent shortages or excess.</li>
+                    <li>Assisted in implementing operational improvements, streamlining processes for better performance.</li>
+                    <li>Maintained accurate records, documentation, and compliance with internal procedures.</li>
+                </ul>
+            </article>
+
             <hr>
-            <p class="job-title">Administrative Assistant / Secretary</p>
-            <p class="company">Petra Petroleum Service and Distribution – Mamburao Branch | Jan 2020 – Dec 2023</p>
-            <ul>
-                <li>Coordinated daily operations, ensuring smooth workflow and efficiency in a fast-paced environment.</li>
-                <li>Scheduled, supervised, and supported staff, aligning tasks with operational goals.</li>
-                <li>Maintained accurate records, reports, and documentation critical for decision-making and performance tracking.</li>
-                <li>Handled customer inquiries and concerns with professionalism, ensuring high service standards.</li>
-                <li>Assisted management in implementing policies, procedures, and operational controls.</li>
-                <li>Streamlined administrative and operational processes to support overall branch or restaurant performance.</li>
-            </ul>
+
+            <article class="experience">
+                <p class="job-title">Administrative Assistant / Secretary</p>
+                <p class="company">Petra Petroleum Service and Distribution – Mamburao Branch | Jan 2020 – Dec 2023</p>
+                <ul>
+                    <li>Coordinated daily operations, ensuring smooth workflow and efficiency in a fast-paced environment.</li>
+                    <li>Scheduled, supervised, and supported staff, aligning tasks with operational goals.</li>
+                    <li>Maintained accurate records, reports, and documentation critical for decision-making and performance tracking.</li>
+                    <li>Handled customer inquiries and concerns with professionalism, ensuring high service standards.</li>
+                    <li>Assisted management in implementing policies, procedures, and operational controls.</li>
+                    <li>Streamlined administrative and operational processes to support overall branch or restaurant performance.</li>
+                </ul>
+            </article>
+
             <hr>
-            <p class="job-title">Hotel Receptionist</p>
-            <p class="company">Ark Bayz Suites – Puerto Galera, Oriental Mindoro | Jan 2016 – Dec 2019</p>
-            <ul>
-                <li>Managed front desk operations, welcoming guests and ensuring smooth check-in/check-out processes.</li>
-                <li>Provided excellent customer service, resolving inquiries and concerns promptly and professionally.</li>
-                <li>Coordinated guest reservations, bookings, and room assignments efficiently.</li>
-                <li>Handled billing, payments, and daily cash reconciliation with accuracy.</li>
-                <li>Maintained records, reports, and documentation to support management decisions.</li>
-                <li>Assisted in coordinating staff schedules and daily operational tasks.</li>
-                <li>Supported overall hospitality operations, ensuring high service standards and guest satisfaction.</li>
-            </ul>
+
+            <article class="experience">
+                <p class="job-title">Hotel Receptionist</p>
+                <p class="company">Ark Bayz Suites – Puerto Galera, Oriental Mindoro | Jan 2016 – Dec 2019</p>
+                <ul>
+                    <li>Managed front desk operations, welcoming guests and ensuring smooth check-in/check-out processes.</li>
+                    <li>Provided excellent customer service, resolving inquiries and concerns promptly and professionally.</li>
+                    <li>Coordinated guest reservations, bookings, and room assignments efficiently.</li>
+                    <li>Handled billing, payments, and daily cash reconciliation with accuracy.</li>
+                    <li>Maintained records, reports, and documentation to support management decisions.</li>
+                    <li>Assisted in coordinating staff schedules and daily operational tasks.</li>
+                    <li>Supported overall hospitality operations, ensuring high service standards and guest satisfaction.</li>
+                </ul>
+            </article>
+
             <hr>
-            <p class="job-title">Waitress</p>
-            <p class="company">Hammerhead Karaoke Bar – Puerto Galera, Oriental Mindoro | Mar 2014 – Sep 2014</p>
-            <ul>
-                <li>Provided attentive and friendly table service, ensuring customer satisfaction in a fast-paced environment.</li>
-                <li>Assisted in taking orders, serving food and beverages, and handling customer requests promptly.</li>
-                <li>Maintained cleanliness and organization of dining areas.</li>
-                <li>Handled cash and processed payments accurately.</li>
-                <li>Supported team members in coordinating service flow during peak hours.</li>
-                <li>Developed strong communication and customer service skills applicable to supervisory roles.</li>
-            </ul>
+
+            <article class="experience">
+                <p class="job-title">Waitress</p>
+                <p class="company">Hammerhead Karaoke Bar – Puerto Galera, Oriental Mindoro | Mar 2014 – Sep 2014</p>
+                <ul>
+                    <li>Provided attentive and friendly table service, ensuring customer satisfaction in a fast-paced environment.</li>
+                    <li>Assisted in taking orders, serving food and beverages, and handling customer requests promptly.</li>
+                    <li>Maintained cleanliness and organization of dining areas.</li>
+                    <li>Handled cash and processed payments accurately.</li>
+                    <li>Supported team members in coordinating service flow during peak hours.</li>
+                    <li>Developed strong communication and customer service skills applicable to supervisory roles.</li>
+                </ul>
+            </article>
+
             <hr>
-            <p class="job-title">Waitress</p>
-            <p class="company">Nova Dive Center – Puerto Galera, Oriental Mindoro (Korean Dive Center) | Apr 2008 – Aug 2010</p>
-            <ul>
-                <li>Provided efficient and friendly table service to diverse clientele, ensuring excellent customer satisfaction.</li>
-                <li>Took orders, served food and beverages, and addressed guest requests promptly and courteously.</li>
-                <li>Maintained cleanliness, organization, and presentation of dining and service areas.</li>
-                <li>Handled cash transactions and assisted in billing processes accurately.</li>
-                <li>Supported teamwork during high-volume periods, developing coordination and operational skills.</li>
-                <li>Gained experience in multicultural service environments, enhancing adaptability and communication skills.</li>
-            </ul>
-        </div>
+
+            <article class="experience">
+                <p class="job-title">Waitress</p>
+                <p class="company">Nova Dive Center – Puerto Galera, Oriental Mindoro (Korean Dive Center) | Apr 2008 – Aug 2010</p>
+                <ul>
+                    <li>Provided efficient and friendly table service to diverse clientele, ensuring excellent customer satisfaction.</li>
+                    <li>Took orders, served food and beverages, and addressed guest requests promptly and courteously.</li>
+                    <li>Maintained cleanliness, organization, and presentation of dining and service areas.</li>
+                    <li>Handled cash transactions and assisted in billing processes accurately.</li>
+                    <li>Supported teamwork during high-volume periods, developing coordination and operational skills.</li>
+                    <li>Gained experience in multicultural service environments, enhancing adaptability and communication skills.</li>
+                </ul>
+            </article>
+        </section>
+
         <hr>
 
-        <div class="section certification">
-            <p><i class="fas fa-file-signature"></i> I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.</p>
-            <p style="text-align: right;"><strong>Snooky D. Delos Reyes</strong></p>
-        </div>
-    </div>
+        <section class="section certification">
+            <p>
+                <i class="fas fa-file-signature"></i>
+                I hereby certify that the information provided above is true and accurate to the best of my knowledge and belief.
+            </p>
+            <p style="text-align:right;"><strong>Snooky D. Delos Reyes</strong></p>
+        </section>
+    </section>
 
-</div>
+</main>
 
-<!-- Download Button -->
-<div style="text-align:center; margin: 20px;">
-    <button id="downloadBtn" style="padding: 12px 20px; font-size: 16px; background-color: #03363d; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
+<div class="download-wrap">
+    <button id="downloadBtn" type="button">
         <i class="fas fa-download"></i> Download Resume (PDF)
     </button>
 </div>
@@ -232,37 +519,90 @@ ul { padding-left: 20px; }
 <script>
 document.getElementById("downloadBtn").addEventListener("click", async () => {
     const { jsPDF } = window.jspdf;
-    const resume = document.querySelector(".resume-container");
+    const resume = document.getElementById("resume");
     const button = document.getElementById("downloadBtn");
-    button.style.display = "none";
 
-    const canvas = await html2canvas(resume, { scale: 2, useCORS: true, scrollY: -window.scrollY });
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4");
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    // First page
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-    heightLeft -= pdfHeight;
-
-    // Additional pages
-    while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pdfHeight;
+    if (!window.html2canvas || !jsPDF) {
+        alert("The PDF libraries could not be loaded. Please check your internet connection and try again.");
+        return;
     }
 
-    pdf.save("Snooky_Delos_Reyes_Resume.pdf");
-    button.style.display = "block";
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing PDF...';
+
+    try {
+        // Wait briefly for fonts/images to finish rendering.
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
+        const images = Array.from(resume.querySelectorAll("img"));
+        await Promise.all(images.map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
+            });
+        }));
+
+        const canvas = await html2canvas(resume, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            scrollX: 0,
+            scrollY: -window.scrollY,
+            logging: false
+        });
+
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const margin = 0;
+
+        const imageWidth = pageWidth;
+        const imageHeight = (canvas.height * imageWidth) / canvas.width;
+        const pagePixelHeight = Math.floor((canvas.width * pageHeight) / pageWidth);
+
+        let renderedHeight = 0;
+        let pageIndex = 0;
+
+        while (renderedHeight < canvas.height) {
+            const sliceHeight = Math.min(pagePixelHeight, canvas.height - renderedHeight);
+
+            const pageCanvas = document.createElement("canvas");
+            pageCanvas.width = canvas.width;
+            pageCanvas.height = sliceHeight;
+
+            const ctx = pageCanvas.getContext("2d");
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+            ctx.drawImage(
+                canvas,
+                0, renderedHeight, canvas.width, sliceHeight,
+                0, 0, canvas.width, sliceHeight
+            );
+
+            const pageImage = pageCanvas.toDataURL("image/png");
+            const pageImageHeight = (sliceHeight * pageWidth) / canvas.width;
+
+            if (pageIndex > 0) {
+                pdf.addPage();
+            }
+
+            pdf.addImage(pageImage, "PNG", margin, margin, imageWidth, pageImageHeight);
+            renderedHeight += sliceHeight;
+            pageIndex++;
+        }
+
+        pdf.save("Snooky_Delos_Reyes_Resume.pdf");
+    } catch (error) {
+        console.error("PDF generation failed:", error);
+        alert("Unable to generate the PDF. Please try again.");
+    } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="fas fa-download"></i> Download Resume (PDF)';
+    }
 });
 </script>
 
